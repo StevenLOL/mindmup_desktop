@@ -1,0 +1,114 @@
+.progress-color {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  border: 1px solid black;
+  text-align:center;
+  vertical-align: middle;
+}
+.progress-floating {
+  display: none;
+  z-index: 999;
+  border: 1px solid #0088cc;
+  border-radius: 9px;
+  position: absolute !important;
+  padding: 10px;
+  cursor: move;
+}
+.progress-calc {
+  top:50px;
+  left:10px;
+}
+.progress-toolbar {
+  top:200px;
+  left:10px;
+}
+.progress-toolbar .btn-group {
+  margin-bottom: 10px;
+}
+.progress-toolbar-active .progress-toolbar {
+  display: inherit !important;
+}
+.progress-toolbar-active .progress-top-menu {
+  display: none !important;
+}
+.progress-toolbar a {
+  cursor: pointer;
+}
+.progress-toolbar-header {
+  margin-bottom:10px;
+}
+#progressEditModal .colorPicker-picker {
+  width:20px; height:20px;
+}
+.progress-icon {
+  max-width: 16px;
+  max-height: 16px;
+  vertical-align: middle;
+  text-align:center;
+}
+.filter-box {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 5px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.filter-header {
+  margin-bottom: 5px;
+}
+.filter-box table {
+    width: 100%;
+}
+.filter-box th {
+  text-align: left;
+}
+.filter-box input {
+  margin: 0px !important;
+}
+#progress-calc-widget .cell1 input {
+  width: 100%;
+  text-align: right;
+}
+#progress-calc-widget .table-scrollview {
+  overflow-y: scroll;
+  overflow-x: visible;
+  padding-right: 20px;
+}
+@media (max-height: 500px) {
+  #progress-calc-widget .table-scrollview {
+    max-height: 150px;
+  }
+}
+@media (max-height: 1024px) {
+  #progress-calc-widget .table-scrollview {
+    max-height: 300px;
+  }
+}
+@media (min-height: 1024px) {
+  #progress-calc-widget .table-scrollview {
+    max-height: 500px;
+  }
+}
+.calc-total {
+	padding-left: 10px;
+	padding-right: 30px;
+	font-weight: bold;
+	padding-bottom: 30px;
+	padding-top: 10px;
+	border-top: 1px dashed gray;
+}
+.calc-total-description {
+	float: left;
+}
+.calc-total-value {
+	float: right;
+}
+.calc-table .cell0 {
+	text-align:left;
+}
+.calc-table .cell1 {
+	text-align:right;
+}

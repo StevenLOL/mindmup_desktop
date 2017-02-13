@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  Copyright (c) 2013/4 Sauf Pompiers Ltd
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software (the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit persons
+to whom the Software is furnished to do so, subject to the following conditions:
+
+1. The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+2. The Software may not be used to offer a publicly accessible service that
+replicates the core service, visual layout or experience of www.mindmup.com
+
+3. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+  <head>
+    <meta charset="utf-8">
+    <title>MindMup: Zero-Friction Free Online Mind Mapping Software - Mind Map in the cloud</title>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="apple-touch-icon" href="static/img/apple-touch-icon.png" />
+    <meta name="keywords" content="mind mapping, mind map, mindmap, mindmapping, free online mindmapping, free online mind mapping, mindmup" />
+    <meta name="description" content="Mind Map in the cloud. Zero-friction, free online mind mapping. Opensource mindmapping software. The most productive online mind map canvas on the Web. Supports Freemind mindmap import/export." />
+    <link rel="shortcut icon" href="static/img/favicon.ico" >
+  <link href="static/pack_latest/external.css" rel="stylesheet" />
+  <link href="https://plus.google.com/u/0/communities/112831595986131146219" rel="publisher" />
+  
+  <link href="compiled/combined.css" rel="stylesheet" />
+
+  <link href="http://blog.mindmup.com/feeds/posts/default" rel="alternate" type="application/rss+xml" title="RSS" />
+  <script src="chrome-app/timetrack.js"></script>
+
+<link rel="stylesheet" href="chrome-app/app.css"/>
+  </head>
+  <body class="map-unchanged chrome_app chrome">
+
+  <div id="floating-toolbar" class="floating span-toolbar well well-small hidden-phone hidden-touch hidden-collapsed-toolbar">
+      <button class="close pull-right" data-category="Toolbar Click" data-mm-key="ctrl+b meta+b" data-event-type="Expand/Collapse" data-mm-target="body" data-mm-class='collapsed-toolbar' data-mm-role="toggle-class" data-title="Hide toolbar (Ctrl+b)" data-placement='left' rel='tooltip'><i class="toggle icon-remove"></i></button>
+      <div class="toolbar-inner">
+        <div class="btn-toolbar" id="toolbarEdit">
+              <div class="btn-group">
+                <button rel="tooltip" data-placement="bottom" data-title="Zoom&nbsp;in&nbsp;(z)" data-category="Toolbar Click" data-event-type="Zoom in" class="btn  scaleUp"><i class="icon-zoom-in"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Zoom&nbsp;out&nbsp;(Shift+z)" data-category="Toolbar Click" data-event-type="Zoom out" class="btn  scaleDown"><i class="icon-zoom-out"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Re-center view (Esc or 0)" data-category="Toolbar Click" data-event-type="Zoom reset" class="btn  resetView"><i class="icon-circle-blank"></i></button>
+              </div>
+
+              <div class="btn-group">
+                <button rel="tooltip" data-placement="bottom" data-title="Select&nbsp;subtree&nbsp;(&#123;)" data-category="Toolbar Click" data-event-type="Select subtree" class="btn activateNodeAndChildren"><i class="icon-sitemap"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Select&nbsp;all children&nbsp;([)" data-category="Toolbar Click" data-event-type="Select all children" class="btn activateChildren"><i class="icon-th-list"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Select all siblings (=)" data-category="Toolbar Click" data-event-type="Select all siblings" class="btn activateSiblingNodes"><i class="icon-ellipsis-vertical"></i></button>
+              </div>
+
+              <div class="btn-group">
+                <button id="menuAdd" rel="tooltip" data-placement="bottom" data-title="Add child (Tab)" data-category="Toolbar Click" data-event-type="Add idea" class="btn  addSubIdea"><i class="icon-signin" ></i></button>
+                <button id="menuInsertSibling" rel="tooltip" data-placement="bottom" data-title="Insert sibling (Enter)" data-category="Toolbar Click" data-event-type="Insert Sibling" class="btn  addSiblingIdea"><i class="icon-signin icon-rotate-90" ></i></button>
+                <button id="menuInsertIntermediate" rel="tooltip" data-placement="bottom" data-title="Insert parent (Shift+Tab)" data-category="Toolbar Click" data-event-type="Insert Intermediate" class="btn insertIntermediate"><i class="icon-signin icon-rotate-180" ></i></button>
+              </div>
+              <div class="btn-group">
+                <button id="menuEdit" rel="tooltip" data-placement="bottom" data-title="Edit node (Spacebar)" data-category="Toolbar Click" data-event-type="Edit idea" class="btn  editNode"><i class="icon-pencil"></i></button>
+                <button id="menuCollapse" rel="tooltip" data-placement="bottom" data-title="Expand/collapse node (/ or F)" data-category="Toolbar Click" data-event-type="Collapse idea" class="btn  toggleCollapse"><i class="icon-leaf"></i></button>
+                <button id="menuDelete" rel="tooltip" data-placement="bottom" data-title="Delete node (Backspace)" data-category="Toolbar Click" data-event-type="Delete idea" class="btn removeSubIdea"><i class="icon-remove"></i></button>
+              </div>
+              <div class="btn-group">
+                <button rel="tooltip" data-placement="bottom" data-title="Copy (Ctrl+c)" data-category="Toolbar Click" data-event-type="Copy" class="btn  copy"><i class="icon-copy"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Paste (Ctrl+v)" data-category="Toolbar Click" data-event-type="Paste" class="btn paste"><i class="icon-paste"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Cut (Ctrl+x)" data-category="Toolbar Click" data-event-type="Cut" class="btn cut"><i class="icon-cut"></i></button>
+              </div>
+              <div class="btn-group">
+                <button class="btn " rel="tooltip" data-title="Node color (Shift+Spacebar)" data-category="Toolbar Click" data-event-type="Node Color">
+                  <input data-mm-target-property='background' class='updateStyle hide' type="hidden" value="" />&nbsp;
+                </button>
+        <button rel="tooltip" data-placement="bottom" data-title="Icon/Image (I)" data-category="Toolbar Click" data-event-type="Edit Icon" class="btn editIcon"><i class="icon-picture"></i></button>
+                <button rel="tooltip" data-placement="bottom" data-title="Connect (Alt+click)" data-category="Toolbar Click" data-event-type="Link" class="btn toggleAddLinkMode"><i class="toggle icon-resize-horizontal"></i></button>
+              </div>
+        <div class="btn-group">
+        <button rel="tooltip" data-placement="bottom" data-title="Attachment (A)" data-category="Toolbar Click" data-event-type="Open Attachment" class="btn openAttachment"><i class="icon-paper-clip"></i></button>
+        <button rel="tooltip" data-placement="bottom" data-title="Measurements (M)" data-category="Toolbar Click" data-event-type="Open Measurements" class="btn" data-mm-role="activatedNodesMeasureSheet"><i class="icon-table"></i></button>
+        <button rel="tooltip" data-placement="bottom" data-title="Storyboard (S)" data-category="Toolbar Click" data-event-type="Open Storyboard" class="btn" data-mm-role="storyboard-toggler"><i class="icon-film"></i></button>
+
+
+        </div>
+          </div>
+          <a class="pull-right small" data-title="Keyboard shortcuts" data-category="Toolbar Click" data-event-type="Keyboard shortcuts" target="_blank" href="http://discover.mindmup.com/keyboard-shortcuts">Hotkeys</a>
+
+      </div>
+    </div>
+    <div id='modalAbout' class='modal hide fade'>
+  <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+    <h3>MindMup: zero-friction mind mapping</h3>
+  </div>
+  <div class='modal-body'>
+    <p>MindMup is a free, 
+    <a href="http://github.com/mindmup" target="_blank" data-category="About" data-event-type="(Intro) Source Code">opensource</a>, mindmapping canvas. Our aim is to build the most productive mind map system.</p>
+    <p> 
+    To join the community, impact our roadmap and get notified about future changes,
+    <a target="_blank" href="http://facebook.com/mindmupapp" data-category="About" data-event-type="(Intro) Connect on FB">connect on Facebook</a>,
+    <a target="_blank" href="http://twitter.com/mindmup" data-category="About" data-event-type="(Intro) Connect on Twitter">follow on Twitter</a> or 
+    <a target="_blank" href="https://plus.google.com/u/0/communities/112831595986131146219" data-category="About" data-event-type="(Intro) Connect on G+">join us on Google+</a>.
+    </p>
+  </div>
+  <div class='modal-footer'>
+    <a href='#' data-dismiss='modal' class='btn btn-primary'>Close</a>
+  </div>
+</div>
+
+    <div id='modalImport' class='modal hide fade'>
+  <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+    <h3>Import a file</h3>
+  </div>
+  <div class='modal-body'>
+	  <p>You can import a MindMup (.mup) or a FreeMind (.mm) file from your local computer. Just select the file using the button below.</p>
+  </div>
+  <div class='modal-footer'>
+	  <div class="pull-left" data-mm-role="status"></div>
+	  <button data-mm-role='select-file' class='btn btn-primary btn-file'>Select File</button>
+	  <input type="file" name="file" />
+  </div>
+</div>
+
+    <div id="modalTerms" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Terms &amp; Conditions</h3>
+  </div>
+  <div class="modal-body">
+    <p>Software copyright &copy; 2013-2015 Sauf Pompiers Ltd. (For Software License terms, <a href="https://github.com/mindmup/mindmup/blob/master/LICENSE" target="_blank">click here</a>)</p>
+    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+    <p>All user created content stored in third party storage services is the ownership of the respective users that created it and unless specified differently
+    all rights belong to those users. All user content stored on anonymous MindMup public storage is licensed under the <a href='http://creativecommons.org/publicdomain/zero/1.0/legalcode'  rel='nofollow' target='_blank'>CC0 1.0 Universal</a> terms.</p>
+    <p>By using this web site you agree to our <a href="/legal/privacy" target="_blank">privacy policy</a>.</p>
+    <p>Built with <a href='http://twitter.github.com/bootstrap/' rel='nofollow' target='_blank'>Bootstrap</a>,
+    <a href='http://www.sinatrarb.com/' rel='nofollow' target='_blank'>Sinatra</a>,
+    <a href='http://jquery.com/' rel='nofollow' target='_blank'>JQuery</a>.
+    Icons from <a href='http://fortawesome.github.com/Font-Awesome' rel='nofollow' target='_blank'>Font Awesome</a> by Dave Gandy.</p>
+  </div>
+  <div class="modal-footer">
+    <a href='#' data-dismiss='modal' class='btn btn-primary'>Close</a>
+  </div>
+</div>
+
+    <div id='modalGoldStorageOpen' class='modal hide fade'>
+  <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+    <h3>Mindmup Gold Maps</h3>
+  </div>
+  <div class='modal-body'>
+    <div data-mm-role="status"></div>
+    <div data-mm-role="section" data-mm-section="file-list">
+  	  <table class="table table-striped table-condensed">
+  		  <thead>
+          <tr>
+            <th>Name</th>
+            <th>Last modified</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-mm-role='template'>
+            <td><a href="#" data-mm-role='file-link'></a></td>
+            <td data-mm-role='modification-status'></td>
+            <td>
+              <button data-mm-role='map-delete' class='btn-inline pull-right icon-trash hidden-phone' rel='tooltip' data-title='Delete Map'></button>
+            </td>
+          </tr>
+        </tbody>
+  	 </table>
+    </div>
+    <div data-mm-section="delete-map delete-map-in-progress" >
+      <p>Delete <strong><span data-mm-role="map-name"></span></strong>?</p>
+    </div>
+    <div data-mm-section="delete-map-successful">
+      <div class="alert alert-success alert-block">
+        <h4>The map was deleted</h4>
+      </div>
+    </div>
+    <div data-mm-section="delete-map-failed">
+      <div class="error alert alert-error alert-block">
+        <p><h4>The map was not deleted</h4></p>
+        <p>Please try again later.</p>
+        <p>If the error persists, please email <a href="mailto:contact@mindmup.com?subject=Unable to delete gold map">contact@mindmup.com<a> and let us know the name of the map you are trying to delete.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class='modal-footer'>
+    <a class="pull-left btn" href="http://discover.mindmup.com/mindmup-gold#managing-files" target="_blank" data-mm-section="file-list"><i class="icon-question-sign"></i>&nbsp;More Info</a>
+
+    <a href='#' class='btn pull-left' data-mm-section="delete-map delete-map-failed" data-mm-role="show-section" data-mm-target-section="file-list">&lt; Back</a>
+    <a href='#' class='btn btn-danger' data-mm-role="delete-map-confirmed" data-mm-section="delete-map">Delete File</a>
+    <button class='btn' disabled data-mm-section="delete-map-in-progress"><i class="icon-spinner icon-spin"></i>&nbsp;Delete File</button>
+	  <a href='#' data-dismiss='modal' class='btn' data-mm-section="file-list delete-map-in-progress delete-map-successful delete-map-failed">Close</a>
+    <a href='#' data-dismiss='modal' class='btn' data-mm-section="delete-map">Cancel</a>
+  </div>
+</div>
+
+    <div id="modalAttachmentEditor" class="hide">
+  <div class="viewer-topbar">
+        <button rel='tooltip' data-placement='bottom' data-mm-role='close' class='close' title='Close (Esc)'>&times;</button>
+		    <button class="pull-right btn btn-small btn-primary" rel='tooltip' data-placement='bottom' data-mm-role='edit' title='Edit (Ctrl/Cmd+Enter)'>Edit</button>
+  </div>
+  <div class="editor-topbar">
+    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+      <span class="btn-group">
+        <a class="btn btn-small dropdown-toggle" rel='tooltip' data-placement='bottom' data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+          <ul class="dropdown-menu" data-mm-role='font'></ul>
+        </span>
+      <span class="btn-group">
+        <a class="btn btn-small dropdown-toggle" rel='tooltip' data-placement='bottom' data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+          </ul>
+      </span>
+      <span class="btn-group hidden-phone">
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+      </span>
+      <span class="btn-group hidden-phone">
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+      </span>
+      <span class="btn-group visible-desktop" >
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+      </span>
+      <span class="btn-group visible-desktop">
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+        <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+      </span>
+      <span class="btn-group">
+        <a class="btn btn-small" rel="tooltip" data-placement="bottom" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+		    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" rel='tooltip' data-placement='bottom' title="Hyperlink"><i class="icon-link"></i></a>
+		      <span class="dropdown-menu input-append">
+
+			      <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+			      <button class="btn" type="button">Add</button>
+          </span>
+          <a class="btn btn-small hidden-phone" data-edit="unlink" rel='tooltip' data-placement='bottom' title="Remove Hyperlink"><i class="icon-cut"></i></a>
+        </span>
+      </li>
+      <span class="btn-group hidden-desktop">
+        <a class="btn btn-small  dropdown-toggle" rel='tooltip' data-placement='bottom' data-toggle="dropdown" title="Other Tools"><i class="icon-wrench"></i>&nbsp;<b class="caret"></b></a>
+        <span class="dropdown-menu">
+          <div class="btn-toolbar">
+            <span class="btn-group visible-phone">
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+            </span>
+            <span class="btn-group visible-phone">
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+            </span>
+            <span class="btn-group hidden-desktop">
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+            </span>
+            <span class="btn-group hidden-desktop">
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+              <a class="btn btn-small" rel='tooltip' data-placement='bottom' data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+            </span>
+            <span class="btn-group visible-phone">
+              <a class="btn btn-small" data-edit="unlink" rel='tooltip' data-placement='bottom' title="Remove Hyperlink"><i class="icon-cut"></i></a>
+            </span>
+          </div>
+        </span>
+     </span>
+	  <div class="pull-right non-group">
+      <button class="btn btn-small btn-warning" rel='tooltip' data-placement='bottom' data-mm-role='close' title='Cancel changes (Esc)'>
+        <span class="icon-remove-circle"/><span class="visible-desktop">&nbsp;Cancel</span>
+      </button>
+      <button class="btn btn-small btn-danger" rel='tooltip' data-placement='bottom' data-mm-role='clear' title='Delete'>
+        <span class="icon-trash"/><span class="visible-desktop">&nbsp;Delete</a></button> 
+
+      <button class="btn btn-small btn-primary" rel='tooltip' data-placement='bottom' data-mm-role='save' title='Save changes (Ctrl/Cmd+Enter)'>
+      <span class="icon-save"/><span class="visible-desktop">&nbsp;Save</span></button>
+	  </div>
+  </div>  
+  </div>
+	  <div id='attachEditArea' data-mm-role='editor'></div>
+</div>
+
+    <div id='modalAutoSave' class='modal hide fade'>
+  <div class='modal-header'>
+    <h3>You have unsaved local changes</h3>
+  </div>
+  <div class='modal-body'>
+    <p>
+    You have made local changes to this map that were not saved. 
+    Please choose if you would like to apply them or discard them and continue with the saved version.
+    </p>
+  </div>
+  <div class='modal-footer'>
+    <a data-category="Auto Save" data-event-type="Apply" href='#' data-mm-role='apply' tabstop='1' class='btn btn-primary'>Apply local changes</a>
+    <a data-category="Auto Save" data-event-type="Discard" href='#' data-mm-role='discard' tabstop='2' class='btn'>Discard local changes</a>
+  </div>
+</div>
+
+    <div id='modalExtensions' class='modal hide fade'>
+  <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+    <h3>Extensions</h3>
+  </div>
+  <div class='modal-body'>
+	  <div data-mm-role="ext-list">
+		<div data-mm-role="template">
+		  <input type="checkbox"> <h4 data-mm-role="title"></h4><p data-mm-role="desc"> (<a data-mm-role="doc" target="_blank">more info</a>)</p>
+		</div>
+	</div>
+  </div>
+  <div class='modal-footer'>
+    <a href='#' data-dismiss='modal' class='btn btn-primary'>Close</a>
+  </div>
+</div>
+
+    <div id='modalKeyActions' class='modal hide fade'>
+  <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'><i class="icon-remove"></i></button>
+    <h3>
+      <i class="logo">&nbsp;</i>
+      &nbsp;MindMup
+      <small class="hidden-phone">Zero-friction free online mind mapping</small>
+    </h3>
+  </div>
+  <div class='modal-body'>
+    <div class="carousel slide" data-interval="false" id="topbox">
+      <div class="carousel-inner">
+        <div class="active item">
+        <button data-target="#topbox" data-slide-to="1" class="btn btn-xlarge slide-control"><i class="icon-lightbulb icon-large"></i>&nbsp;Create a new map</button>
+        <button data-target="#topbox" data-slide-to="2" class="btn btn-xlarge"><i class="icon-cloud-upload icon-large"></i>&nbsp;Open a map</button>
+        <button data-target="#topbox" data-slide-to="3" class="btn btn-xlarge"><i class="icon-book icon-large"></i>&nbsp;Learn how to...</button>
+        <button data-target="#topbox" data-slide-to="4" class="btn btn-xlarge"><i class="icon-envelope icon-large"></i>&nbsp;Get in touch</button>
+        </div>
+        <div class="item">
+          <h1><i class="icon-lightbulb icon-large"></i>&nbsp;Create a new map</h1>
+          <ul data-mm-role="new-sources" class="nav nav-tabs nav-stacked">
+            <li><a data-mm-role="dismiss-modal new-map" data-category="Start Menu" data-event-type="Create - s3" href="#"       data-mm-map-source="a"><span class="repo repo-a"></span>Public online map to share with the world</a></li>
+            <li><a data-mm-role="dismiss-modal new-map" data-category="Start Menu" data-event-type="Create - google"  href="#"  data-mm-map-source="g"><span class="repo repo-g"></span>Private map on Google Drive (you control sharing)</a></li>
+            <li><a data-mm-role="dismiss-modal new-map" data-category="Start Menu" data-event-type="Create - gold" href="#"     data-mm-map-source="p"><span class="repo repo-p"></span>Private map on MindMup Gold (requires subscription)</a></li>
+            <li><a class="slide-control" data-slide-to="0" data-target="#topbox"><span class="icon-arrow-left"></span>Main menu</a></li>
+          </ul>
+          <a data-category="Start Menu" data-event-type="Describe - storage" target="_blank" href="http://blog.mindmup.com/p/storage-options.html" class="pull-right">More information about storage options</a>
+        </div>
+
+        <div class="item">
+          <h1><i class="icon-cloud-upload icon-large"></i>&nbsp;Open a map</h1>
+          <ul data-mm-role="open-sources" class="nav nav-tabs nav-stacked">
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Import" data-target="#modalImport" data-toggle="modal"><span class="icon-upload"></span>Import a Freemind or MindMup file</a></li>
+            <li><a data-mm-role="dismiss-modal google-drive-open" data-category="Start Menu" data-event-type="Open from Google"><span class="repo repo-g"></span>&nbsp;Open a Freemind or MindMup file from Google Drive</a>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Open from Mindmup Gold Storage" data-target="#modalGoldStorageOpen" data-toggle="modal"><span class="repo repo-b"></span>&nbsp;Open from Mindmup Gold Storage</a></li>
+            <li><a class="slide-control" data-slide-to="0" data-target="#topbox"><span class="icon-arrow-left"></span>Main menu</a></li>
+          </ul>
+        </div>
+
+
+        <div class="item">
+          <h1><i class="icon-book icon-large"></i>&nbsp;Learn how to...</h1>
+          <ul class="nav nav-tabs nav-stacked">
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Learn - mouse" target="_blank" href="http://discover.mindmup.com/mouse-touch-operations"><span class="icon-hand-up"></span>Edit the map using touch or a mouse</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Learn - keyboard" target="_blank" href="http://discover.mindmup.com/keyboard-shortcuts"><span class="icon-keyboard"></span>Be more productive with keyboard shortcuts</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Learn - realtime" target="_blank" href="http://blog.mindmup.com/p/realtime-collaboration.html"><span class="icon-group"></span>Collaborate in real time with your colleagues</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Learn - screen-max" target="_blank" href="http://blog.mindmup.com/2013/03/go-full-screen-remove-all-distractions.html"><span class="icon-laptop"></span>Get the most out of your screen</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Learn - gold" target="_blank" href="http://discover.mindmup.com/mindmup-gold"><span class="repo repo-b"></span>Get more space and share larger maps on MindMup</a></li>
+            <li><a class="slide-control" data-slide-to="0" data-target="#topbox"><span class="icon-arrow-left"></span>Main menu</a></li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h1><i class="icon-envelope icon-large"></i>&nbsp;Get in touch</h1>
+          <ul class="nav nav-tabs nav-stacked">
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - email" href="mailto:contact@mindmup.com"><span class="icon-envelope"></span>E-mail</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - blog" target="_blank" href="http://blog.mindmup.com"><span class="icon-rss"></span>Blog/News</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - vote" target="_blank" href="http://mindmup.uservoice.com"><span class="icon-bullhorn"></span>Vote on features</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - facebook" target="_blank" href="http://facebook.com/mindmupapp"><span class="icon-facebook"></span>Get news through Facebook</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - google+"  target="_blank" href="https://plus.google.com/u/0/communities/112831595986131146219"><span class="icon-google-plus"></span>Join the MindMup Google+ community</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - twitter"  target="_blank" href="https://twitter.com/intent/user?screen_name=mindmup"><span class="icon-twitter"></span>Follow @mindmup on Twitter</a></li>
+            <li><a data-mm-role="dismiss-modal" data-category="Start Menu" data-event-type="Get in touch - github"  target="_blank" href="http://github.com/mindmup"><span class="icon-github"></span>Source code on Github</a></li>
+            <li><a class="slide-control" data-slide-to="0" data-target="#topbox"><span class="icon-arrow-left"></span>Main menu</a></li>
+          </ul>
+        </div>
+        <div class="item">
+  <h1>MindMup - free online mind mapping software</h1>
+        
+          <p>Make a mind map online, free, and keep it in the cloud with Google Drive, Dropbox, GitHub and our free anonynous storage. MindMup is a free online mind mapping application running opensource mind mapping software. MindMup is a zero friction mind map maker, helping you focus on your work and removing all the distractions while mindmapping. It is a highly productive mindmap creator, a great free alternative to XMind and MindMeister, with powerful keyboard shortcuts and allowing advanced users to get the most out of their screen real-estate with configurable toolbars. MindMup is available everywhere: you can access your maps with a browser or a mobile device, and cloud storage ensures you have access to your data where ever you are, and the application works nicely with both desktop, tablet and mobile browsers. Freemind mind map import/export is available.</p>
+          <p>If you are looking to create a mind-map online, MindMup is the app I would recommend the most. MindMup is the sort of app everyone dreams of finding online. It’s open-source, free and integrated with all the best tools. It’s also designed by people who use the app, so it’s efficient and effective. And unlike so much free software, it looks great too." - MakeUseOf <a href="http://www.makeuseof.com/tag/try-mindmup-mind-mapping-via-google-drive/" rel="nofollow">MakeUseOf</a></p> 
+
+  <p>MindMup is super-simple, lightweight, and generally a joy to use. - <a href="http://www.pcworld.com/article/2032818/review-mindmup-is-a-free-effortless-way-to-create-mind-maps-in-moments.html" rel="nofollow">PC World</a></p> 
+
+  <p>What I like about Mindmup is that it is clean and simple. As they describe, it allows for frictionless capture of ideas and projects. It is not bloated with unneeded features. The UI stays out of your way and lets you get your ideas out. - <a rel="nofollow" href="http://timemanagementninja.com/links/app-of-the-week-mindmup/">Time Management Ninja</a></p> 
+
+  <p>If you like to plan and brainstorm by creating mind maps to link together ideas, MindMup is a great browser-based program that helps you get organized with lots of features. - <a rel="nofollow" href="http://lifehacker.com/mindmup-maps-your-brain-in-the-browser-614853279">LifeHacker</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>
+
+    <div id="modalConfirm" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 data-mm-role="title"></h3>
+  </div>
+  <div class="modal-body">
+	<span data-mm-role="explanation"></span>
+  </div>
+  <div class="modal-footer">
+    <a tabstop="1" href="#" class="btn btn-primary" data-mm-role="confirm" data-dismiss="modal"></a>
+    <a tabstop="2" href="#" class="btn" data-dismiss="modal">Cancel</a>
+  </div>
+</div>
+
+    <div id="modalPDFExport" data-mm-role="layout-export" class="modal hide fade" data-mm-format="pdf" data-mm-launch-key-code="80">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Create a Printable PDF</h3>
+  </div>
+  <div class="modal-body">
+    <div class="visible initial">
+
+      <p>The map will be <a href="http://blog.mindmup.com/p/pdf-export.html" target="_blank" >securely uploaded</a> to our server for processing.
+      </p>
+      <form class="form-horizontal" data-mm-role="export-parameters">
+        <div class="control-group">
+          <label class="control-label">Orientation:</label>
+          <div class="controls">
+            <div class="btn-group" data-toggle="buttons-radio">
+              <button name="orientation" type="button" class="btn active" value="landscape">
+                <img src="static/img/portrait.png" class="export landscape"/>
+              </button>
+              <button name="orientation" type="button" class="btn " value="portrait">
+              <img src="static/img/portrait.png" class="export"/>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Page Size:</label>
+          <div class="controls">
+            <select name="page-size">
+              <option>A0</option>
+              <option>A1</option>
+              <option>A2</option>
+              <option>A3</option>
+              <option selected>A4</option>
+              <option>A5</option>
+              <option value="LETTER">US Letter</option>
+              <option value="LEGAL">US Legal</option>
+              <option value="TABLOID">US Tabloid</option>
+            </select>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Text orientation:</label>
+          <div class="controls">
+            <select name="direction">
+              <option value="ltr">Left to right</option>
+              <option value="rtl">Right to left</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="visible inprogress alert alert-info alert-block">
+      <i class="icon-spinner icon-spin"></i>&nbsp;Please wait, exporting the map...
+    </div>
+    <div class="visible done alert alert-success alert-block">
+      <h4>Export complete:</h4> <a target="_blank" data-mm-role="output-url">Click here to open</a> (This link will remain available for 24 hours)
+    </div>
+    <div class="visible error alert alert-error alert-block">
+      <h4>Unable to export PDF:</h4>
+      <br/>
+
+      <span data-mm-role="error-message"></span>
+      <span data-mm-role="generation-error">
+        This map contains a feature not currently supported by PDF export. Please contact us at <a data-mm-role="contact-email">contact@mindmup.com</a> quoting the reference number: <b data-mm-role="file-id"></b>
+      </span>
+      <span data-mm-role="file-too-large">
+         <p>
+           The map you are exporting is too large. The maximum size of maps that can be exported online is:
+           <ul>
+              <li>Anonymous users: 100 Kb </li>
+              <li><a href="http://discover.mindmup.com/mindmup-gold" target="_blank">Mindmup Gold</a> users: 953 Mb</li>
+           </ul>
+           <p>For maps larger than  953Mb, Mindmup Gold Users should contact us at <a href="mailto:contact@mindmup.com?subject=Offline%20MindMup%20PDF%20Export">contact@mindmup.com</a> to arrange an offline export.</p>
+
+         </p>
+      </span>
+      <span data-mm-role="polling-timeout">
+        The server is too busy. Please try again later, or if this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+      <span data-mm-role="network-error">
+        This operation requires a network connection and we can't reach MindMup servers at the moment. Please ensure that you are online and try again. If this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="pull-left btn visible initial" href="http://blog.mindmup.com/p/how-to-print-large-maps.html" target="_blank"><i class="icon-question-sign"></i>&nbsp;How to print large maps</a>
+    <a tabstop="1" href="#" class="btn btn-primary visible initial" data-mm-modal-shown-focus data-mm-role="start-export">Create PDF</a>
+    <a tabstop="2" href="#" class="btn visible initial inprogress" data-dismiss="modal">Cancel</a>
+    <a tabstop="2" href="#" class="btn visible done error" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+    <div id="modalAtlasPublish" data-mm-role="atlas-publish layout-export" class="modal hide fade" data-mm-format="publish.json">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3><i class="icon-cloud-upload"></i>&nbsp;Publish to MindMup Atlas</h3>
+  </div>
+  <div class="modal-body">
+    <div class="visible initial">
+			<p>MindMup Atlas is a cloud mind map library that enables authors to publish interactive, read-only maps, optimised for posting to social networks and embedding in web sites.</p>
+			<ul>
+				<li>Anyone can publish maps up to 100 KByte. Published maps will be available for at least 6 months.</li>
+				<li><a target="_blank" href="http://discover.mindmup.com/mindmup-gold">MindMup Gold</a> users can publish maps up to 100 MByte for the duration of their subscription.</li>
+			</ul>
+			<p>By clicking on <b>Start</b>, you accept the <a href="/legal/atlas" target="#blank">Terms and Conditions</a> for MindMup Atlas.</p>
+    </div>
+		<div class="visible seo">
+      <form class="form-horizontal" data-mm-role="export-parameters atlas-metadata">
+        <div class="control-group">
+          <label class="control-label">Title:</label>
+          <div class="controls">
+            <input name="title" placeholder="Descriptive title for your map" class="input-xlarge" />&nbsp;<i class="icon-question-sign" rel="tooltip" data-title="Text that will show in the browser title bar. Keep it under 40 characters." data-placement="bottom"></i>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">URL slug:</label>
+          <div class="controls">
+            <input name="slug" placeholder="URL slug" class="input-xlarge" />&nbsp;<i class="icon-question-sign" rel="tooltip" data-title="Descriptive text that will form part of the URL. Keep it short!"></i>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Description:</label>
+          <div class="controls">
+            <input name="description" placeholder="Description" class="input-xlarge" />&nbsp;<i class="icon-question-sign" rel="tooltip" data-title="Page description for search engines. Keep it under 150 characters."></i>
+          </div>
+        </div>
+      </form>
+		</div>
+    <div class="visible inprogress alert alert-info alert-block">
+      <i class="icon-spinner icon-spin"></i>&nbsp;Please wait, publishing your map...
+    </div>
+    <div class="visible done">
+
+      <div data-mm-role="publish-status initial" class="alert alert-success alert-block">
+        <h4>Your map was published</h4>
+      </div>
+
+      <div data-mm-role="publish-status republished" class="alert alert-warning alert-block">
+        <h4>Your map was re-published.</h4>
+        <p>The updated content should be available in around 30 minutes (<a href="http://blog.mindmup.com/p/republishing-atlas-maps.html" target="_blank">more info</a>).</p>
+      </div>
+
+
+      <div class="tabbable tabs-top">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#publish-tab-social" data-toggle="tab">Share on social networks</a></li>
+          <li><a href="#publish-tab-send-links" data-toggle="tab">Send links</a></li>
+          <li><a href="#publish-tab-embed" data-toggle="tab">Embed code</a></li>
+          <li><a href="#publish-tab-get-archive" data-toggle="tab">Get archive</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="publish-tab-social">
+						<p style="margin-bottom: 20px">Click on a button below to share quickly:</p>
+						<p class="text-center">
+							<a data-event-type="Post to Twitter"
+								onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+								data-category="Atlas" data-event-type="Post to Twitter" class="btn btn-large btn-share icon-twitter" rel="tooltip" data-title="Twitter" data-mm-role="twitter-url" target="_blank"></a>
+							<a
+								onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+								data-event-type="Post to Facebook" data-category="Atlas" class="btn btn-large btn-share icon-facebook" rel="tooltip" data-title="Facebook"  data-mm-role="facebook-url" target="_blank"></a>
+							<a
+								onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+								data-event-type="Post to Google Plus" data-category="Atlas" class="btn btn-large btn-share icon-google-plus"  rel="tooltip" data-title="Google Plus"  data-mm-role="google-plus-url" target="_blank"></a>
+							<a
+								onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+								data-event-type="Post to LinkedIn" data-category="Atlas" class="btn btn-large btn-share icon-linkedin" rel="tooltip" data-title="LinkedIn" data-mm-role="linkedin-url" target="_blank"></a>
+							<a
+								data-event-type="Post to Tumblr" data-category="Atlas" class="btn btn-large btn-share icon-tumblr" rel="tooltip" data-title="Tumblr" data-mm-role="tumblr-url" target="_blank"></a>
+							<a
+								data-event-type="Post to Pinterest" data-category="Atlas" class="btn btn-large btn-share icon-pinterest" rel="tooltip" data-title="Pinterest" data-mm-role="pinterest-url" target="_blank"></a>
+						</p>
+          </div>
+          <div class="tab-pane" id="publish-tab-send-links">
+            <p class="text-center">
+              <a class="btn btn-large btn-share" href="mailto:" data-mm-role="email-index-html" rel="tooltip" data-title="Email a link" data-event-type="Email Link" data-category="Atlas" ><i class="icon-envelope"></i></a>
+              <a href="#" class="btn btn-large btn-share" data-mm-role="gmail-index-html" rel="tooltip" data-title="Gmail a link" data-event-type="Gmail Link" data-category="Atlas" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="mm-icon-gmail"></i></a>
+            </p>
+						<form class="form">
+							<div class="control-group">
+								<label>Web page:</label>
+								<div class="input-append">
+									<input data-mm-role="index-html selectable-read-only" class="span5" style="outline:none" />
+									<a class="btn btn-small" href="#" data-mm-role="index-html" target="_blank"><i class="icon-share"></i></a>
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Thumbnail image:</label>
+								<div class="input-append">
+									<input data-mm-role="thumb-png selectable-read-only" class="span5" style="outline:none" />
+									<a class="btn btn-small" href="#" data-mm-role="thumb-png" target="_blank"><i class="icon-share"></i></a>
+								</div>
+							</div>
+						</form>
+          </div>
+
+          <div class="tab-pane" id="publish-tab-embed">
+						<p>Paste the code snippet below in your web site to embed the map. Don't forget to configure the width and height of the iFrame!</p>
+							<textarea data-mm-role="embed-markup selectable-read-only" class="span5"></textarea>
+          </div>
+
+          <div class="tab-pane" id="publish-tab-get-archive">
+            <p class="text-center">
+              <a class="btn btn-large btn-share" href="mailto:" data-mm-role="email-archive-zip" rel="tooltip" data-title="Email a link" data-event-type="Email Archive" data-category="Atlas" ><i class="icon-envelope"></i></a>
+              <a href="#" class="btn btn-large btn-share" data-mm-role="gmail-archive-zip" rel="tooltip" data-title="Gmail a link" data-event-type="Gmail Archive" data-category="Atlas" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="mm-icon-gmail"></i></a>
+            </p>
+						<form class="form">
+							<div class="control-group">
+								<label>Zip Archive:</label>
+								<div class="input-append">
+									<input data-mm-role="archive-zip selectable-read-only" class="span5" style="outline:none" />
+									<a class="btn btn-small" href="#" data-mm-role="archive-zip" target="_blank"><i class="icon-share"></i></a>
+								</div>
+							</div>
+						</form>
+          </div>
+				</div>
+			</div>
+    </div>
+    <div class="visible error alert alert-error alert-block">
+      <h4>Unable to publish your map:</h4>
+      <br/>
+
+      <span data-mm-role="error-message"></span>
+			<span data-mm-role="generation-error">
+        This map contains a feature not currently supported by Atlas. Please contact us at <a data-mm-role="contact-email">contact@mindmup.com</a> quoting the reference number: <b data-mm-role="file-id"></b>
+      </span>
+      <span data-mm-role="file-too-large">
+         <p>
+           The map you are publishing is too large. The maximum size of maps that can be published online is:
+           <ul>
+              <li>Anonymous users: 100 Kbyte </li>
+              <li><a href="http://discover.mindmup.com/mindmup-gold" target="_blank">Mindmup Gold</a> users: 953 Mbyte</li>
+           </ul>
+           <p>For maps larger than  953Mbyte, Mindmup Gold Users should contact us at <a href="mailto:contact@mindmup.com?subject=Offline%20MindMup%20PDF%20Export">contact@mindmup.com</a> to arrange an offline export.</p>
+
+         </p>
+      </span>
+      <span data-mm-role="polling-timeout">
+        The server is too busy. Please try again later, or if this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+      <span data-mm-role="network-error">
+        This operation requires a network connection and we can't reach MindMup servers at the moment. Please ensure that you are online and try again. If this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="pull-left btn visible initial done" href="http://discover.mindmup.com/atlas" target="_blank"><i class="icon-question-sign"></i>&nbsp;More Info</a>
+    <a tabstop="1" href="#" class="btn btn-primary visible initial" data-mm-modal-shown-focus data-mm-role="set-state" data-mm-state="seo">Start &gt;</a>
+    <a tabstop="1" href="#" class="btn visible seo pull-left" data-mm-role="set-state" data-mm-state="initial">&lt; Back</a>
+    <a tabstop="1" href="#" class="btn btn-primary visible seo" data-mm-role="start-export">Publish</a>
+    <a tabstop="2" href="#" class="btn visible initial inprogress author" data-dismiss="modal">Cancel</a>
+    <a tabstop="2" href="#" class="btn visible done error seo" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+    <div id="modalImageExport" data-mm-role="layout-export" class="modal hide fade" data-mm-format="png">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Export to Image</h3>
+  </div>
+  <div class="modal-body">
+    <div class="visible initial">
+      <p>Click the Export button to  securely upload the map  for conversion to PNG.</p>
+    </div>
+    <div class="visible inprogress alert alert-info alert-block">
+      <i class="icon-spinner icon-spin"></i>&nbsp;Please wait, exporting the map...
+    </div>
+    <div class="visible done alert alert-success alert-block">
+      <h4>Export complete:</h4> <a target="_blank" data-mm-role="output-url">Click here to open</a> (This link will remain available for 24 hours)
+    </div>
+    <div class="visible error alert alert-error alert-block">
+      <h4>Unable to export Image:</h4>
+      <br/>
+
+      <span data-mm-role="error-message"></span>
+      <span data-mm-role="generation-error">
+        This map contains a feature not currently supported by Image export. Please contact us at <a data-mm-role="contact-email">contact@mindmup.com</a> quoting the reference number: <b data-mm-role="file-id"></b>
+      </span>
+      <span data-mm-role="file-too-large">
+         <p>
+           The map you are exporting is too large. The maximum size of maps that can be exported online is:
+           <ul>
+              <li>Anonymous users: 100 Kb </li>
+              <li><a href="http://discover.mindmup.com/mindmup-gold" target="_blank">Mindmup Gold</a> users: 953 Mb</li>
+           </ul>
+           <p>For maps larger than  953Mb, Mindmup Gold Users should contact us at <a href="mailto:contact@mindmup.com?subject=Offline%20MindMup%20PDF%20Export">contact@mindmup.com</a> to arrange an offline export.</p>
+
+         </p>
+      </span>
+      <span data-mm-role="polling-timeout">
+        The server is too busy. Please try again later, or if this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+      <span data-mm-role="network-error">
+        This operation requires a network connection and we can't reach MindMup servers at the moment. Please ensure that you are online and try again. If this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a tabstop="1" href="#" class="btn btn-primary visible initial" data-mm-modal-shown-focus="true" data-mm-role="start-export">Export</a>
+    <a tabstop="2" href="#" class="btn visible initial inprogress" data-dismiss="modal">Cancel</a>
+    <a tabstop="2" href="#" class="btn visible done error" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+    <div id="modalPresentationExport" data-mm-role="layout-export" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Export slideshow </h3>
+  </div>
+  <div class="modal-body">
+    <div class="visible initial">
+      <p>Please select slideshow format and click the Export button to securely upload the storyboard for conversion:</p>
+      <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="slideshowFormatSelector">Slideshow format</label>
+        <div class="controls">
+            <select data-mm-role="format-selector" id="slideshowFormatSelector">
+              <option value="presentation.pdf">PDF</option>
+              <option value="presentation.pptx">Powerpoint (Beta)</option>
+            </select>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="visible inprogress alert alert-info alert-block">
+      <i class="icon-spinner icon-spin"></i>&nbsp;Please wait, exporting the storyboard...
+    </div>
+    <div class="visible done alert alert-success alert-block">
+      <h4>Export complete:</h4> <a target="_blank" data-mm-role="output-url">Click here to open</a> (This link will remain available for 24 hours)
+    </div>
+    <div class="visible error alert alert-error alert-block">
+      <h4>Unable to export Slideshow:</h4>
+      <br/>
+
+      <span data-mm-role="error-message"></span>
+      <span data-mm-role="generation-error">
+        This storyboard contains a feature not currently supported by slideshow export. Please contact us at <a data-mm-role="contact-email">contact@mindmup.com</a> quoting the reference number: <b data-mm-role="file-id"></b>
+      </span>
+      <span data-mm-role="file-too-large">
+         <p>
+           The storyboard you are exporting is too large. The maximum size of storyboard that can be exported online is:
+           <ul>
+              <li>Anonymous users: 100 Kb </li>
+              <li><a href="http://discover.mindmup.com/mindmup-gold" target="_blank">Mindmup Gold</a> users: 953 Mb</li>
+           </ul>
+           <p>For storyboards larger than  953Mb, Mindmup Gold Users should contact us at <a href="mailto:contact@mindmup.com?subject=Offline%20MindMup%20Slideshow%20Export">contact@mindmup.com</a> to arrange an offline export.</p>
+
+         </p>
+      </span>
+      <span data-mm-role="polling-timeout">
+        The server is too busy. Please try again later, or if this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+      <span data-mm-role="network-error">
+        This operation requires a network connection and we can't reach MindMup servers at the moment. Please ensure that you are online and try again. If this error persists contact us at <a data-mm-role="contact-email">contact@mindmup.com</a>
+      </span>
+      <span data-mm-role="empty">There are no slides in this storyboard. Add some slides before exporting.</span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a tabstop="1" href="#" class="btn btn-primary visible initial" data-mm-modal-shown-focus="true" data-mm-role="start-export">Export</a>
+    <a tabstop="2" href="#" class="btn visible initial inprogress" data-dismiss="modal">Cancel</a>
+    <a tabstop="2" href="#" class="btn visible done error" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+      <div class="modal hide fade" id='modalGoldLicense'>
+    <div class="modal-header">
+		<button data-event-type="x" data-category="Gold Click" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3><span data-mm-section="no-license license-required" class="hidden-phone">Welcome to </span>MindMup Gold</h3>
+    </div>
+    <div class="modal-body">
+
+		<div data-mm-section="license-required">
+			<p class="alert alert-block alert-warning">This operation requires a valid MindMup Gold License.</p>
+		</div>
+		<div data-mm-section="no-license license-required">
+			<p><i>Export, save and embed larger maps using MindMup Gold. </i></p>
+			<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="gold-account-identifer">Log in or sign up:</label>
+				<div class="controls">
+					<input type="text" data-mm-role="gold-account-identifier" id="gold-account-identifier" placeholder="Account name or e-mail"/>
+				</div>
+			</div>
+			</form>
+		</div>
+		<div data-mm-section="code-sent">
+			<p>We have sent a temporary access code to your e-mail.</p>
+			<form class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="gold-access-code">Enter code from e-mail:</label>
+					<div class="controls">
+						<input type="text" data-mm-role="gold-access-code" id="gold-access-code" placeholder="Access code" />
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-mm-section="sending-restore-license-code">
+			<p><i class="icon-spinner icon-spin"></i>&nbsp;Please wait, your license is being restored</p>
+		</div>
+		<div data-mm-section="sending-code-failed">
+			<p class="alert alert-block alert-error">We could not find that email or username.</p>
+
+			<p> If you are a new user select <strong>I want to sign up</strong>, or go <strong>Back</strong> to provide a different email. If you think this is an error, please email us at <a target="_blank" href="mailto:contact@mindmup.com?subject=Gold%20Login">contact@mindmup.com</a></p>
+		</div>
+		<div data-mm-section="sending-code">
+			<p><i class="icon-spinner icon-spin"></i>&nbsp;Please wait, sending the access code to your e-mail</p>
+		</div>
+		<div data-mm-section="restore-code-failed">
+			<p class="alert alert-block alert-error">The code you entered was rejected.</p>
+			<p>If you think this is an error, please email us at <a target="_blank" href="mailto:contact@mindmup.com?subject=Gold%20Login">contact@mindmup.com</a></p>
+		</div>
+
+		<div data-mm-section="unauthorised-license">
+		  <p class="alert alert-block alert-error">This operation is not authorised under your current MindMup Gold License. The license might
+		  have expired, or the file you are trying to access might have been saved using a different license.</p>
+
+		<p>Click on <strong>Log Out</strong> to change the active license in this browser or <strong>View Subscription</strong> to see your subscription details and renew it. </p>
+		<form class="form-horizontal">
+		  <div class="control-group">
+			<label class="control-label" for="gold-view-account-name">Account name</label>
+			<div class="controls">
+			  <input type="text" data-mm-role="account-name" readonly="true" id="gold-view-account-name"/>
+			</div>
+		  </div>
+		 </form>
+		<p>If you think that this is an error, please send us an e-mail at <a target="_blank" href="mailto:contact@mindmup.com?subject=MindMup%20Gold">contact@mindmup.com</a></p>
+
+
+		</div>
+		<div data-mm-section="invalid-license">
+			<p class="alert alert-error alert-block">This license is invalid or expired</p>
+			<p>Click on <strong>Log Out</strong> to change the active license in this browser. </p>
+			<p>If you think that this is an error, please send us an e-mail at <a target="_blank" href="mailto:contact@mindmup.com?subject=MindMup%20Gold">contact@mindmup.com</a></p>
+		</div>
+		<div data-mm-section="license-server-unavailable">
+			<p>This license server is unavailable at the moment. Please try again later. If the problem persists, please send us an e-mail at <a target="_blank" href="mailto:contact@mindmup.com?subject=MindMup%20Gold">contact@mindmup.com</a></p>
+		</div>
+
+
+    <!-- active, delinquent, not-purchased, required -->
+
+
+    <!------------ ----->
+		<div data-mm-section="license-not-purchased" data-mm-poll-for-subscription="true">
+			<p class="alert alert-error alert-block">A subscription has not been purchased for this license. If you have paid using PayPal in the last 15 minutes, please wait for your payment to be processed.</p>
+			<form class="form-horizontal">
+			  <div class="control-group">
+				<label class="control-label" for="gold-view-account-name">Account name</label>
+				<div class="controls">
+				  <input type="text" data-mm-role="account-name" readonly="true" id="gold-view-account-name"/>
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label">Subscription</label>
+				<div class="controls">
+					<select data-mm-role="form-input-updater" data-mm-form="license-purchase-form" data-mm-form-field="subscription-code">
+						<option value=""> monthly</option>
+						<option value=""> yearly</option>
+					</select>
+				</div>
+			  </div>
+			 </form>
+			<p class="hidden-phone">Click on <strong>Log Out</strong> to remove this license from your browser or choose a payment option below to proceed to a secure payment page.</p>
+
+			<p>If you think that this is an error, please send us an e-mail at <a target="_blank" href="mailto:contact@mindmup.com?subject=MindMup%20Gold">contact@mindmup.com</a></p>
+		</div>
+
+    <div data-mm-section="view-license">
+      <p>You are currently subscribed as <strong><span data-mm-role="account-name"></span></strong></p> 
+    </div>
+		<div data-mm-section="license-active-stripe license-active-paypal">
+      <p>You are currently subscribed as <strong><span data-mm-role="account-name"></span></strong> with a 
+        <strong><span data-mm-role="license-period"></span>ly</strong> billing cycle.</p>
+      <p>Your next payment of <strong><span data-mm-role="renewal-price"></span></strong> 
+      will be automatically taken on <strong><span data-mm-role="expiry-date"></span></strong>
+      using 
+      <span data-mm-section="license-active-paypal">
+        your PayPal pre-approved payment
+      </span>
+      <span data-mm-section="license-active-stripe">
+        <br/>
+      </span>
+      <strong data-mm-role="license-method"></strong>.
+      </p>
+      <div data-mm-section="license-active-paypal">
+        To cancel or amend your subscription details, please go directly to your PayPal account pre-approved payments. 
+      </div>
+		</div>
+
+    <div data-mm-section="license-active">
+      <p>You are currently using MindMup Gold as <strong><span data-mm-role="account-name"></span></strong>. <br/> 
+      Your
+      license is valid until <strong><span data-mm-role="expiry-date"></span></strong>, and will not be automatically renewed.
+     </p>
+     <p>If you would like to extend the license, please contact <a href="mailto:contact@mindmup.com">contact@mindmup.com</a></p> 
+    </div>
+
+    <div data-mm-section="license-delinquent-stripe license-delinquent-paypal">
+      <p>You are currently using MindMup Gold as <strong><span data-mm-role="account-name"></span></strong>. <br/>
+      Your
+      license <span class="text-error">expired on <span data-mm-role="expiry-date"></span></span>, and we could not
+      automatically renew it using 
+      <span data-mm-section="license-delinquent-paypal">
+        your PayPal pre-approved payment <br/>
+      </span>
+      <strong><span data-mm-role="license-method"></span></strong>. 
+     </p>
+     <p data-mm-section="license-delinquent-paypal">Please set up a new payment type directly on PayPal or ensure you have enough funds in the account for the
+     payment to be processed.</p>
+     <p data-mm-section="license-delinquent-stripe">Please update your card details or confirm with your bank that the card is active.
+     We will try to re-process the payment automatically shortly.</p>
+    </div>
+
+    <div data-mm-section="license-expired">
+      <p>You are currently using MindMup Gold as <strong><span data-mm-role="account-name"></span></strong>.<br/> 
+      Your
+      license <span class="text-error">expired on <span data-mm-role="expiry-date"></span></span>.</p>
+      <p>Click on <strong>Log Out</strong> to log on using a different account, or select a billing cycle and payment method to
+      re-activate your account:</p>
+
+			<form class="form-horizontal">
+			  <div class="control-group">
+				<label class="control-label">Subscription</label>
+				<div class="controls">
+					<select data-mm-role="form-input-updater" data-mm-form="license-purchase-form" data-mm-form-field="subscription-code">
+						<option value=""> monthly</option>
+						<option value=""> yearly</option>
+					</select>
+				</div>
+			  </div>
+			 </form>
+    </div>
+
+		<div data-mm-section="cancelling-subscription">
+			<p><i class="icon-spinner icon-spin"></i>&nbsp;Please wait, we are cancelling your subscription</p>
+		</div>
+		<div data-mm-section="cancelled-subscription">
+			<p>You have cancelled automatic renewal for your subscription as <strong><span data-mm-role="account-name"></span></strong> </p>
+			<p>Your current subscription will expire on <strong><span data-mm-role="expiry-date"></span></strong><span data-mm-role="subscription-expiry"></span></p>
+		</div>
+		<div data-mm-section="cancellation-failed">
+			<p class="alert alert-block alert-error">Due to a network problem, it was not possible to cancel your subscription at this moment</p>
+      <p>Please try again later. If the problem persists, contact us at <a href="mailto:contact@mindmup.com">contact@mindmup.com</a></p>
+		</div>
+		<div data-mm-section="payment-complete">
+			<p class="alert alert-block alert-success">Your Mindmup Gold subscription was successful</p>
+			<p>Thank you for your payment. You are now ready to start using MindMup Gold as <strong><span data-mm-role="account-name"></span></strong></p>
+		</div>
+
+		<div data-mm-section="waiting-for-payment" data-mm-poll-for-subscription="true">
+			<p><i class="icon-spinner icon-spin"></i>&nbsp;Waiting for payment to be processed</p>
+		</div>
+
+		<div data-mm-section="loading-subscription">
+			<p><i class="icon-spinner icon-spin"></i>&nbsp;Please wait, we are loading the subscription information for <strong><span data-mm-role="account-name"></span></strong></p>
+		</div>
+		<div data-mm-section="register">
+			<p>
+				<span class="hidden-phone-landscape"><span class="hidden-phone">Please enter your desired account name, contact email address and subscription type.</span> Your account name<span class="hidden-phone"> will be shown in the URL of your maps, and</span> must be 4-20 characters, start with a letter and contain only lowercase<span class="hidden-phone"> (latin)</span> letters and numbers.</span>
+			</p>
+			<form class="form-horizontal">
+			  <div class="control-group">
+				<label class="control-label hidden-phone-portrait" for="gold-register-account-name">Account name</label>
+				<div class="controls">
+				  <input type="text" id="gold-register-account-name" placeholder="Account name" name="account-name"/>
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label hidden-phone-portrait" for="gold-register-email">E-mail</label>
+				<div class="controls">
+				  <input type="text" id="gold-register-email" placeholder="youremail@server.com" name="email"/>
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label hidden-phone-portrait">Subscription</label>
+				<div class="controls">
+					<select data-mm-role="form-input-updater" data-mm-form="license-purchase-form" data-mm-form-field="subscription-code">
+						<option value=""> monthly</option>
+						<option value=""> yearly</option>
+					</select>
+				</div>
+			  </div>
+
+			  <div class="control-group">
+				<div class="controls">
+					<label class="checkbox">
+						<input type="checkbox" id="gold-register-terms" name="terms"/>
+						I agree to the <a  data-category="Gold Click" data-event-type="agree gold terms" href="http://gold.mindmup.com/terms" target="_blank">MindMup Gold Terms of Service</a>.
+					</label>
+				</div>
+			  </div>
+			</form>
+		</div>
+
+		<div data-mm-section="registration-fail">
+			<div class="alert alert-error alert-block">
+				<h4>There was a problem with the registration</h4>
+				<p data-mm-role="email-exists">The e-mail is already registered. Please use a different e-mail or
+				contact us at
+				<a target="_blank" href="mailto:contact@mindmup.com?subject=Gold%20Renewal">contact@mindmup.com</a> to renew the license for that e-mail.</p>
+				<p data-mm-role="user-exists">This account is already registered. Please choose a different account name.</p>
+				<p data-mm-role="invalid-args">The server is currently too busy, please try again later.</p>
+				<p data-mm-role="server-error">We could not send the registration e-mail.  Please check if the e-mail is correct, and if so contact us at <a target="_blank" href="mailto:contact@mindmup.com?subject=Gold%20Registration">contact@mindmup.com</a>.</p>
+				<p data-mm-role="network-error">The server is currently too busy, please try again later.</p>
+			</div>
+		</div>
+		<div data-mm-section="registration-progress">
+			<p><i class="icon-spinner icon-spin"></i>&nbsp;Please wait, processing your registration</p>
+		</div>
+		<div data-mm-section="registration-success">
+			<p>You have registered for MindMup Gold as <strong data-mm-role="account-name"></strong>.</p>
+			<div>You have selected the
+				<select data-mm-role="form-input-updater" data-mm-form="license-purchase-form" data-mm-form-field="subscription-code">
+					<option value=""> monthly</option>
+					<option value=""> yearly</option>
+				</select>
+				subscription.
+			</div>
+			<p>Please choose a payment option below to proceed to a secure payment page.</p>
+		</div>
+	</div>
+    <div class="modal-footer">
+	<button data-category="Gold Click" data-event-type="Go Back" data-mm-section="register code-sent sending-code-failed" class="btn pull-left" tabstop="4" data-mm-role="show-section" data-mm-target-section="no-license"><i class="icon-chevron-left"></i>&nbsp;Back</button>
+	<button data-category="Gold Click" data-event-type="Back" data-mm-section="registration-fail" data-mm-target-section="register" data-mm-role="show-section" class="btn pull-left" tabstop="7"><i class="icon-chevron-left"></i>&nbsp;Back</button>
+
+	<a target="_blank" href="http://discover.mindmup.com/mindmup-gold" data-category="Gold Click" data-event-type="More Info" data-mm-section="no-license license-required register" class="btn pull-left hidden-phone-portrait" tabstop="1"><i class="icon-question-sign"></i>&nbsp;More Info</a>
+	<button data-category="Gold Click" data-event-type="Remove License" data-mm-role="remove" data-mm-section="view-license license-active license-active-paypal license-active-stripe license-delinquent-stripe license-delinquent-paypal license-expired license-not-purchased cancelled-subscription invalid-license unauthorised-license" class="btn pull-left" tabstop="8">Log Out</button>
+	<button data-category="Gold Click" data-event-type="Cancel Subscription" data-mm-section="view-license" class="btn pull-left" tabstop="4" data-mm-role="action-CancelSubscription">Cancel Subscription</button>
+  <a href="https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_manage-paylist" target="_blank" class="btn pull-left" tabstop="4" data-mm-section="x" data-event-type="Manage Paypal Subscription" data-mm-role="action-PaypalAdmin">Manage Paypal Subscription</a>
+ 
+	<button data-category="Gold Click" data-event-type="Go Back" data-mm-section="restore-code-failed" class="btn pull-left" tabstop="4" data-mm-role="show-section" data-mm-target-section="code-sent"><i class="icon-chevron-left"></i>&nbsp;Back</button>
+
+	<button data-category="Gold Click" data-event-type="Change Card" data-mm-section="view-license" class="btn" tabstop="4" data-mm-role="form-submit action-ChangePaymentMethod" data-mm-form="#change-card-form" data-dismiss="modal">Change Card</button>
+	<button data-category="Gold Click" data-event-type="I have a Gold account" data-mm-section="no-license license-required" data-mm-role="kickoff-restore-license" class="btn btn-primary"  tabstop="1">I have a Gold account</button>
+
+	<button data-category="Gold Click" data-event-type="Log In" data-mm-section="code-sent" data-mm-role="restore-license-with-code" class="btn btn-primary" tabstop="1">Log In</button>
+	<button data-category="Gold Click" data-event-type="Sign Up" data-mm-section="no-license license-required sending-code-failed" data-mm-role="kickoff-sign-up" class="btn btn-success" data-mm-target-section="register" tabstop="1">I want to sign up</button>
+
+
+	<button data-category="Gold Click" data-event-type="Purchase Subscription" data-mm-section="registration-success" class="btn btn-success" tabstop="4" data-mm-role="form-submit action-BuySubscription" data-mm-form="#license-purchase-form-paypal">Pay with PayPal</button>
+
+	<button data-category="Gold Click" data-event-type="Purchase Subscription" data-mm-section="registration-success" class="btn btn-success" tabstop="4" data-mm-role="form-submit action-BuySubscription" data-mm-form="#license-purchase-form">Pay with Credit/Debit Card</button>
+
+	<button data-category="Gold Click" data-event-type="Go Back" data-mm-section="waiting-for-payment" data-mm-role="go-back" class="btn pull-left" tabstop="6"><i class="icon-chevron-left"></i>&nbsp;Back</button>
+
+	<button data-category="Gold Click" data-event-type="Register" data-mm-section="register" data-mm-role="register" class="btn btn-primary" tabstop="6">Register</button>
+	<button data-category="Gold Click" data-event-type="Register" data-mm-section="unauthorised-license" data-mm-role="view-subscription" tabstop="6" class="btn">View Subscription</button>
+
+
+
+	<form id="license-purchase-form" data-mm-role="license-purchase-form" data-mm-next-section="waiting-for-payment" class="hide" target="_blank"  method="post" action="https://gold.mindmup.com/form/buy_subscription">
+		<input type="hidden" data-mm-role="license-text" name="license">
+		<input type="hidden" data-mm-role="subscription-code" name="subscription">
+	</form>
+	<form id="change-card-form" class="hide" target="_blank"  method="post" action="https://gold.mindmup.com/form/change_card">
+		<input type="hidden" data-mm-role="license-text" name="license">
+	</form>
+
+	<form id="license-purchase-form-paypal" data-mm-role="license-purchase-form" data-mm-next-section="waiting-for-payment" name="_xclick" target="_blank" class="hide" action="/cgi-bin/webscr" method="post">
+		<span class="hide" data-mm-subscription-code="" data-mm-subscription-amount-dollars="2.99" data-mm-subscription-period="M"> monthly</span>
+		<span class="hide" data-mm-subscription-code="" data-mm-subscription-amount-dollars="25.00" data-mm-subscription-period="Y"> yearly</span>
+		<input data-mm-role="subscription-code">
+		<input type="hidden" name="cmd" value="_xclick-subscriptions">
+		<input type="hidden" name="item_name" data-mm-role="subscription-description">
+		<input type="hidden" name="business" value="">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="no_shipping" value="2">
+		<input type="hidden" name="a3" data-mm-role="subscription-amount-dollars">
+		<input type="hidden" name="p3" value="1">
+		<input type="hidden" name="t3" data-mm-role="subscription-period">
+		<input type="hidden" name="src" value="1">
+		<input type="hidden" name="sra" value="1">
+		<input type="hidden" name="no_note" value="1">
+		<input type="hidden" name="disp_tot" value="Y">
+		<input type="hidden" name="custom" data-mm-role="account-name">
+		<input type="hidden" name="return" value="/form/paypal_complete">
+		<input type="hidden" name="cancel_return" value="/form/paypal_cancel">
+		<input type="hidden" name="rm" value="2">
+		<!-- <button type="submit" class="btn btn-primary" style="width:250px">Pay with Paypal</button> -->
+	</form>
+
+
+
+	<button data-category="Gold Click" data-event-type="Cancel" data-dismiss="modal" data-mm-section="loading-subscription license-required unauthorised-license registration-fail registration-progress register sending-code code-sent sending-code-failed restore-code-failed sending-restore-license-code expired-license" class="btn hidden-phone-portrait" tabstop="9">Cancel</button>
+	<button data-category="Gold Click" data-event-type="Close" data-dismiss="modal" data-mm-section="license-not-purchased license-active license-expired license-active-paypal license-active-stripe license-delinquent-stripe license-delinquent-paypal cancellation-failed no-license payment-complete view-license cancelled-subscription license-server-unavailable cancelling-subscription waiting-for-payment" class="btn hidden-phone-portrait" tabstop="10">Close</button>
+    </div>
+  </div>
+
+
+    <div id="modalIconEdit" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Icon Editor</h3>
+  </div>
+  <div class="modal-body">
+	  <p class="small">Click on the dashed area to select an image, or just drag and drop the file into the dashed area</p>
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label">
+          Icon:
+        </label>
+        <div class="controls">
+          <div data-mm-role="drop-zone" class="file-drop-zone">
+			  <img data-mm-role="img-preview"/>
+		  </div>
+		  <input type="file" class name="selectfile"/>
+        </div>
+      </div>
+      <div class="control-group" data-mm-role="attribs">
+        <label class="control-label">
+          Position:
+        </label>
+        <div class="controls">
+          <select name="position" tabindex="100">
+            <option value="top">Above text</option>
+            <option value="center">Behind text (centered)</option>
+            <option value="bottom">Below text</option>
+            <option value="left">Left of text</option>
+            <option value="right">Right of text</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group" data-mm-role="attribs">
+        <label class="control-label">
+          Size:
+        </label>
+        <div class="controls">
+			<input tabindex="101" type="text" style="width:50px" name="width" placeholder="width"/>&nbsp;x&nbsp;<input tabindex="102" type="text" style="width:50px" name="height" placeholder="height"/>
+			<input tabindex="103" type="checkbox" name="keepratio" checked="true" /> Keep proportions
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a tabindex="104" href="#" class="btn" data-mm-role="select-file">Select File</a>
+    <a tabindex="105" href="#" class="btn btn-primary" data-mm-role="confirm" data-dismiss="modal">Save</a>
+    <a tabindex="106" href="#" class="btn btn-danger" data-mm-role="clear" data-dismiss="modal">Remove</a>
+    <a tabindex="107" href="#" class="btn" data-dismiss="modal">Cancel</a>
+  </div>
+</div>
+
+    <div class="hide">
+	<span id="anon-alert-template">
+		<span data-mm-role="anon-save">
+			You saved the map to the <a href="http://blog.mindmup.com/p/storage-options.html" target="_blank">public MindMup storage</a> for <strong>6 months</strong>. If this was a mistake, click here to <a href="#" class="btn btn-danger btn-small" data-mm-role="destroy" style="margin:0px">Delete It</a> in the next 10 minutes.
+			<span style="margin-left: 50px">(Do&nbsp;not&nbsp;show&nbsp;this&nbsp;again&nbsp;<input data-mm-role="donotshow" type="checkbox" style="margin:0px"/>)</span>
+		</span>
+		<span data-mm-role="destroyed">
+			The file was removed and the map URL is no longer valid. Please use <em>File-&gt;Save&nbsp;As</em> and save the map to an alternative storage to keep the contents. 
+		</span>
+		<span data-mm-role="destroyed-problem">
+			The map could not be removed due to a network problem or you tried to remove it too late.  <a href="#" class="btn btn-small" data-mm-role="destroy" style="margin:0px">Try again</a>
+		</span>
+	</span>
+</div>
+
+    <div class='modal hide fade' data-mm-role="modal" id="customStyleModal">
+    <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+    <h3>Custom CSS Style (Experimental)</h3>
+    </div>
+    <div class='modal-body' >
+		<p>This is a highly experimental feature and is likely to change significantly in the future. Please read the <a href="http://blog.mindmup.com/p/custom-css-styling.html" target="_blank">custom style</a> documentation before using this. </p>
+		<textarea data-mm-role="style-input" style="width: 90%;height: 300px;" wrap="soft"></textarea> 
+    </div>
+    <div class='modal-footer'>
+		<a href='#' data-dismiss='modal' class='btn btn-primary' data-mm-role="save">Save</a>
+		<a href='#' data-dismiss='modal' class='btn'>Cancel</a>
+    </div>
+</div>
+
+    <div id="floating-collaborators" class="floating span3 well well-small hidden-phone hidden-touch visible-collaboration-toolbar">
+      <button class="close pull-right" data-category="Toolbar Click" data-event-type="Expand/Collapse" data-mm-target="body" data-mm-class='collaboration-toolbar' data-mm-role="toggle-class" data-title="Hide toolbar" data-placement='left' rel='tooltip'><i class="toggle icon-remove"></i></button>
+      <div class="toolbar-inner">
+		<strong class="hidden-has-collaborators muted">No collaborators online</strong>
+		<div class="visible-has-collaborators">
+			<strong class="muted">Online collaborators</strong>
+			<div class="collaborator-list-container">
+				<table class="table table-condensed">
+					<tbody data-mm-role="collab-list">
+					<tr data-mm-role="template">
+						<td class="collab-photo">
+							<img data-mm-role="collaborator-photo collaborator-selector"  />
+						</td>
+						<td  class="collab-name">
+							<a href="#" data-mm-role="collaborator-name collaborator-selector"></a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="speechBubble" style="display:none">
+<svg id="speechSvg" xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.0"
+   width="299.99649"
+   height="225.92412"
+   viewBox="0 0 85.704 64.542"
+   id="Layer_1"
+   xml:space="preserve">
+	<defs   id="defs8" />
+<g   transform="matrix(0.9486962,0,0,0.9486962,2.4834364,1.8361818)"   id="g3">
+<path
+   d="M 45.673,0 C 67.781,0 85.703,12.475 85.703,27.862 C 85.703,43.249 67.781,55.724 45.673,55.724 C 38.742,55.724 32.224,54.497 26.539,52.34 C 15.319,56.564 0,64.542 0,64.542 C 0,64.542 9.989,58.887 14.107,52.021 C 15.159,50.266 15.775,48.426 16.128,46.659 C 9.618,41.704 5.643,35.106 5.643,27.862 C 5.643,12.475 23.565,0 45.673,0 M 45.673,2.22 C 24.824,2.22 7.862,13.723 7.862,27.863 C 7.862,34.129 11.275,40.177 17.472,44.893 L 18.576,45.734 L 18.305,47.094 C 17.86,49.324 17.088,51.366 16.011,53.163 C 15.67,53.73 15.294,54.29 14.891,54.837 C 18.516,53.191 22.312,51.561 25.757,50.264 L 26.542,49.968 L 27.327,50.266 C 32.911,52.385 39.255,53.505 45.673,53.505 C 66.522,53.505 83.484,42.002 83.484,27.862 C 83.484,13.722 66.522,2.22 45.673,2.22 L 45.673,2.22 z "
+   id="path5" />
+</g>
+</svg>
+</div>
+    <div id="topbar" class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div>
+      <ul class="nav pull-left" id="mainMenu">
+        <li><a id="logo-img" data-toggle="modal" data-target="#modalKeyActions" data-placement="bottom" href="#" data-title="Show start menu again" rel="tooltip" data-category="Top Bar" data-event-type="Logo">&nbsp;</a>
+        </li>
+        <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-category="Top Bar" data-event-type="Open Bookmarks">File</a>
+          <ul class="dropdown-menu" role="menu" id="listBookmarks">
+            <li class="template" style="display:none"><a data-category="Top Bar" data-event-type="Bookmark click" class="repo"><button data-mm-role='bookmark-delete' class='btn-inline pull-right icon-remove' rel='tooltip' data-title='Remove bookmark'></button></a></li>
+
+            <li> <a href="#" data-category="Top Bar" data-mm-role="new-map" data-event-type="Create a Map"><i class="icon-lightbulb"></i>&nbsp;New&nbsp;Map</a> </li>
+            <li> <a href="#" data-mm-role="new-from-clipboard" data-category="Top Bar" data-event-type="New From Clipboard"><i class="icon-paste"></i>&nbsp;New&nbsp;From&nbsp;Clipboard</a> </li>
+            <li class="dropdown-submenu visible-online">
+              <a href="#"><i class="icon-cloud-download"></i>&nbsp;Open/Import</a>
+              <ul data-mm-role="open-sources" class="dropdown-menu" role="menu">
+                <li  class="hidden-touch">
+                  <a data-event-type="Import" data-category="Top Bar" data-target="#modalImport" data-toggle="modal"><i class="icon-laptop"></i>&nbsp;From a local drive</a>
+                </li>
+                <li>
+                  <a data-event-type="Open from Google" data-category="Top Bar" data-mm-role="google-drive-open"><span class="repo repo-g"></span>&nbsp;From Google Drive</a>
+                </li>
+                <li>
+                  <a data-event-type="Open from Mindmup Gold Storage" data-category="Top Bar" data-target="#modalGoldStorageOpen" data-toggle="modal"><span class="repo repo-b"></span>&nbsp;From Mindmup Gold Storage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="divider hidden-touch visible-online"></li>
+            <li class="hidden-map-changed disabled visible-online">
+              <a><i class="icon-save"></i>&nbsp;Save</a>
+            </li>
+            <li data-mm-role="save" class="visible-map-changed visible-online">
+              <a data-mm-role="publish" data-category="Top Bar" data-event-type="Save Map"><span data-mm-role="currentrepo" class="repo repo-a"></span>&nbsp;Save</a>
+            </li>
+            <li class="dropdown-submenu visible-online">
+              <a href="#"><i class="icon-save"></i>&nbsp;Save As</a>
+              <ul data-mm-role="save" class="dropdown-menu" role="menu">
+                <li><a data-mm-repository='a' href="#" data-category="Top Bar" data-event-type="Save to MindMup">MindMup</a></li>
+                <li><a data-mm-repository='b' href="#" data-category="Top Bar" data-event-type="Save to MindMup Gold Public">MindMup&nbsp;Gold (Public)</a></li>
+                <li><a data-mm-repository='p' href="#" data-category="Top Bar" data-event-type="Save to MindMup Gold Private">MindMup&nbsp;Gold (Private)</a></li>
+                <li><a data-mm-repository='g' href="#" data-category="Top Bar" data-event-type="Save to Google Drive">Google&nbsp;Drive</a></li>
+              </ul>
+            </li>
+            <li class="hidden-touch dropdown-submenu">
+              <a href="#"><i class="icon-download-alt"></i>&nbsp;Export To Local Disk</a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a data-mm-role="remote-export"  data-mm-format="mup"  data-category="Top Bar" data-event-type="Export MindMup">MindMup (.mup)</a> </li>
+                <li><a data-mm-role="remote-export"  data-mm-format="mm"   data-category="Top Bar" data-event-type="Export FreeMind">FreeMind (.mm)</a> </li>
+                <li><a href="#" data-target="#modalImageExport" data-toggle="modal" data-category="Top Bar" data-event-type="Export Image">Image (PNG)</a> </li>
+                <li><a href="#" data-target="#modalPDFExport" data-toggle="modal" data-category="Top Bar" data-event-type="Export PDF">PDF</a> </li>
+                <li><a data-mm-role="remote-export"  data-mm-format="html" data-category="Top Bar" data-event-type="Export Html">HTML</a> </li>
+                <li><a data-mm-role="remote-export"  data-mm-format="txt"  data-category="Top Bar" data-event-type="Export CSV">Text (tab separated)</a> </li>
+                <li><a data-mm-role="remote-export"  data-mm-format="measures-all" data-mm-extension="txt" data-category="Top Bar" data-event-type="Export measures for entire map">Measures (tab separated)</a> </li>
+                <li><a href="#" data-target="#modalPresentationExport" data-toggle="modal"  data-category="Top Bar" data-event-type="Export presentation slides">Presentation (PDF/PPT)</a></li>
+              </ul>
+            </li>
+						<li><a href="#" data-target="#modalAtlasPublish" data-toggle="modal" data-category="Top Bar" data-event-type="Publish to Atlas"><i class="icon-cloud-upload"></i>&nbsp;Publish to Atlas</a></li>
+            <li class="dropdown-submenu visible-online">
+              <a href="#"><i class="icon-share-alt"></i>&nbsp;Share Map</a>
+              <ul class="dropdown-menu" role="menu" id="sharelinks" data-mm-role="sharelinks">
+                <li><a href="#" data-target="#modalAtlasPublish" data-toggle="modal" data-category="Top Bar" data-event-type="Share via Atlas"><i class="icon-cloud-upload"></i>&nbsp;Publish to Share or Embed</a></li>
+                <li class="visible-map-source-g"><a class="repo repo-g repo-menuitem" href="#" data-mm-role="share-google" data-category="Top Bar" data-event-type="Share Google">Share via Google Drive</a></li>
+              </ul>
+            </li>
+            <li>
+              <a data-event-type="Print" data-target="#modalPDFExport" data-toggle="modal"  data-category="Top Bar"><i class="icon-print"></i>&nbsp;Print</a>
+            </li>
+            <li class="visible-online">
+              <a data-event-type="Pin" data-mm-role="bookmark-pin" data-category="Top Bar"><i class="icon-pushpin"></i>&nbsp;Bookmark this map</a>
+            </li>
+            <li class="divider visible-online"  />
+            <li data-mm-role="bookmark" class="visible-online"><a>Save a map and it will appear here</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-category="Top Bar" data-event-type="Tools">Edit</a>
+          <ul class="dropdown-menu" id="nodeContextMenu" role="menu">
+            <li rel="tooltip" data-title="Ctrl+z"><a data-category="Top Bar" data-event-type="Undo" class="undo"><i class="icon-undo"></i>&nbsp;Undo</a></li>
+            <li class="hidden-phone-landscape" rel="tooltip" data-title="Ctrl+Shift+z"><a data-category="Top Bar" data-event-type="Redo" class="redo"><i class="icon-repeat"></i>&nbsp;Redo</a></li>
+
+            <li class="divider hidden-phone"></li>
+            <li class="hidden-phone-landscape" rel="tooltip" data-title="Ctrl+F"><a data-category="Top Bar" data-event-type="Find" data-mm-role="show-map-search"><i class="icon-search"></i>&nbsp;Find</a></li>
+            <li class="dropdown-submenu hidden-phone">
+              <a href="#"><i class="icon-copy"></i>&nbsp;Clipboard</a>
+              <ul data-mm-role="clipboard" class="dropdown-menu" role="menu">
+
+                <li class="hidden-phone-landscape" rel="tooltip" data-mm-context-menu="Clipboard" data-title="Ctrl+c"><a data-category="Top Bar" data-event-type="Copy" class="copy"><i class="icon-copy"></i>&nbsp;Copy</a></li>
+                <li class="hidden-phone-landscape" rel="tooltip" data-mm-context-menu="Clipboard" data-title="Ctrl+x"><a data-category="Top Bar" data-event-type="Cut" class="cut"><i class="icon-cut"></i>&nbsp;Cut</a></li>
+                <li class="hidden-phone-landscape" rel="tooltip" data-mm-context-menu="Clipboard" data-title="Ctrl+v"><a data-category="Top Bar" data-event-type="Paste" class="paste"><i class="icon-paste"></i>&nbsp;Paste</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu hidden-phone">
+              <a href="#"><i class="icon-sitemap"></i>&nbsp;Select nodes</a>
+              <ul data-mm-role="select" class="dropdown-menu" role="menu">
+                <li class="hidden-phone" rel="tooltip" data-mm-context-menu="Select" data-title="&#123;"><a data-category="Top Bar" data-event-type="Select subtree" class="activateNodeAndChildren"><i class="icon-sitemap"></i>&nbsp;Select&nbsp;subtree</a></li>
+                <li class="hidden-phone" rel="tooltip" data-mm-context-menu="Select" data-title="["><a data-category="Top Bar" data-event-type="Select all children" class="activateChildren"><i class="icon-th-list"></i>&nbsp;Select&nbsp;all&nbsp;children</a></li>
+                <li class="hidden-phone" rel="tooltip" data-mm-context-menu="Select" data-title="="><a data-category="Top Bar" data-event-type="Select all siblings" class="activateSiblingNodes"><i class="icon-ellipsis-vertical"></i>&nbsp;Select&nbsp;all&nbsp;siblings</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+              <a href="#"><i class="icon-plus"></i>&nbsp;Insert</a>
+              <ul data-mm-role="add node" class="dropdown-menu" role="menu">
+                <li rel="tooltip" data-mm-context-menu="Insert" data-title="Tab"><a data-category="Top Bar" data-event-type="Add idea" class="addSubIdea"><i class="icon-signin" ></i>&nbsp;Add Child</a></li>
+                <li class="hidden-phone-landscape" rel="tooltip" data-mm-context-menu="Insert" data-title="Enter"><a data-category="Top Bar" data-event-type="Insert Sibling" class="addSiblingIdea"><i class="icon-signin icon-rotate-90" ></i>&nbsp;Add Sibling</a></li>
+                <li class="hidden-phone-landscape" data-mm-context-menu="Insert" rel="tooltip" data-title="Shift+Tab"><a data-category="Top Bar" data-event-type="Insert Intermediate" class="insertIntermediate"><i class="icon-signin icon-rotate-180" ></i>&nbsp;Add Parent</a></li>
+              </ul>
+            </li>
+            <li rel="tooltip" data-mm-context-menu data-title="Backspace"><a data-category="Top Bar" data-event-type="Delete idea" class="removeSubIdea"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+
+            <li class="divider hidden-phone"></li>
+
+            <li rel="tooltip" data-mm-context-menu data-title="Spacebar"><a data-category="Top Bar" data-event-type="Edit idea" class="editNode"><i class="icon-pencil"></i>&nbsp;Edit node text</a></li>
+            <li rel="tooltip" data-mm-context-menu data-title="Shift+Spacebar"><a data-category="Top Bar" data-event-type="Node Color"><input type="hidden" data-mm-target-property='background' class="updateStyle"></input>&nbsp;Node color</a></li>
+
+            <li rel="tooltip" data-mm-context-menu data-title="I"><a data-category="Top Bar" data-event-type="Open Icon Editor" class="editIcon"><i class="icon-picture"></i>&nbsp;Node Icon/Picture</a></li>
+            <li rel="tooltip" data-mm-context-menu data-title="Alt+click"><a data-category="Top Bar" data-event-type="Add link" class="toggleAddLinkMode"><i class="icon-resize-horizontal"></i>&nbsp;Connect</a></li>
+            <li rel="tooltip" data-mm-context-menu data-title="/ or F"><a data-category="Top Bar" data-event-type="Collapse idea" class="toggleCollapse"><i class="icon-leaf"></i>&nbsp;Expand/collapse</a></li>
+
+            <li class="divider hidden-phone"></li>
+            <li rel="tooltip" data-mm-context-menu data-title="A"><a data-category="Top Bar" data-event-type="Open Attachment"   class="openAttachment"><i class="icon-paper-clip"></i>&nbsp;Node Attachment</a></li>
+
+            <li class="dropdown-submenu" data-mm-context-menu data-mm-role="storyboard-menu" >
+              <a href="#"><i class="icon-film"></i>&nbsp;Storyboard</a>
+              <ul class="dropdown-menu" role="menu">
+                <li rel="tooltip" data-title="+"><a data-category="Top Bar" data-event-type="Add to storyboard" data-mm-role="storyboard-add-scene" ><i class="icon-plus-sign"></i>&nbsp;Add&nbsp;node</a></li>
+                <li><a data-category="Top Bar" data-event-type="Add list to storyboard" data-mm-role="storyboard-add-scene-children" ><i class="icon-list-ul"></i>&nbsp;Add&nbsp;with&nbsp;children</a></li>
+                <li><a data-category="Top Bar" data-event-type="Remove idea from storyboard" data-mm-role="storyboard-remove-scenes-for-idea-id" ><i class="icon-minus-sign"></i>&nbsp;Remove&nbsp;node</a></li>
+              </ul>
+            </li>
+
+            <li data-mm-layout="dom"><a data-category="Topbar" data-event-type="Custom CSS" data-toggle="modal" data-target="#customStyleModal"><i class="icon-cog"></i>&nbsp;Custom Style</a></li>
+          </ul>
+        </li>
+        <li class="dropdown hidden-narrow-screen">
+
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-category="Top Bar" data-event-type="View">Share</a>
+          <ul class="dropdown-menu" role="menu" data-mm-clone="#sharelinks">
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-category="Top Bar" data-event-type="View">View</a>
+          <ul class="dropdown-menu" role="menu">
+            <li rel="tooltip" data-title="z"><a data-category="Top Bar" data-event-type="Zoom in" class="scaleUp"><i class="icon-zoom-in"></i>&nbsp;Zoom in</a></li>
+            <li rel="tooltip" data-title="Shift+z"><a data-category="Top Bar" data-event-type="Zoom out" class="scaleDown"><i class="icon-zoom-out"></i>&nbsp;Zoom out</a></li>
+            <li rel="tooltip" data-title="Esc or 0"><a data-category="Top Bar" data-event-type="Zoom reset" class="resetView"><i class="icon-circle-blank"></i>&nbsp;Re-center view</a></li>
+
+            <li class="divider hidden-touch"></li>
+            <li class="dropdown-submenu">
+              <a href="#">
+                <span class="hidden-row-split"><i class="icon-columns"></i></span><span class="visible-row-split"><i class="icon-columns icon-rotate-270"></i></span>&nbsp;Side pane
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="hidden-phone visible-row-split" rel="tooltip" data-title="Alt+o"><a data-mm-target="body" data-mm-role="split-flip" ><i class="icon-columns"></i>&nbsp;Column&nbsp;split</a></li>
+                <li class="hidden-phone visible-column-split" rel="tooltip" data-title="Alt+o"><a data-mm-target="body" data-mm-role="split-flip"><i class="icon-columns icon-rotate-270"></i>&nbsp;Row&nbsp;split</a></li>
+
+                <li rel="tooltip"  data-title="M" ><a data-category="Top Bar" data-event-type="Open Measurements" data-mm-role="activatedNodesMeasureSheet"><i class="icon-table" >&nbsp;Toggle&nbsp;Measurements</i></a></li>
+                <li rel="tooltip" data-title="S"  ><a data-category="Top Bar" data-event-type="Open Storyboard" data-mm-role="storyboard-toggler"><i class="icon-film">&nbsp;Toggle&nbsp;Storyboard</i></a></li>
+              </ul>
+            </li>
+            <li class="hidden-touch" rel="tooltip" data-title="Ctrl+b"><a data-mm-target="body" data-mm-role="toggle-class" data-mm-class="collapsed-toolbar"><i class="icon-food"></i>&nbsp;<span class="visible-collapsed-toolbar">Show</span><span class="hidden-collapsed-toolbar">Hide</span>&nbsp;toolbar</a></li>
+
+            <li class="hidden-touch" rel="tooltip" data-title="Ctrl+shift+b"><a data-mm-target="body" data-mm-role="toggle-class" data-mm-class="hidden-topbar" data-mm-key="ctrl+shift+b meta+shift+b"><i class="icon-list-alt"></i>&nbsp;
+              <span class="topbar-autohide">Auto Hide</span><span class="topbar-fixed">Always show</span>&nbsp;menu</a></li>
+
+              <li class="hidden-touch" rel="tooltip"><a href="http://discover.mindmup.com/keyboard-shortcuts" target="_blank"><i class="icon-keyboard"></i>&nbsp;Show&nbsp;Hotkeys</a></li>
+              <li class="divider hidden-touch visible-online"></li>
+              <li> <a href="#" class="menuAbout" data-target="#modalGoldLicense" data-toggle="modal" data-category="About" data-event-type="MindMup Gold License"><i class="icon-key"></i>&nbsp;MindMup Gold</a> </li>
+              <li>
+                <a data-event-type="Manage Mindmup Gold Maps" data-category="Top Bar" data-target="#modalGoldStorageOpen" data-toggle="modal"><span class="repo repo-b"></span>&nbsp;Mindmup Gold Maps</a>
+              </li>
+
+              <li class="dropdown-submenu" data-mm-layout="dom" data-mm-role="measures-display-control">
+                <a href="#"><i class="icon-tags"></i>&nbsp;Measure Labels</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a data-category="Measurements" data-event-type="Hide" data-mm-role="hide-measure"><i class="icon-eye-close"></i>&nbsp;Hide</a></li>
+                  <li class="divider" data-mm-role="hide-measure"></li>
+                  <li data-mm-role="measurement-activation-template"><a data-category="Measurements" data-event-type="Show On Map" data-mm-role="show-measure"><span class="show-active"><i class="icon-check"></i>&nbsp;</span><span data-mm-role="measure-name"></span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="hidden-phone-portrait visible-online"><a data-toggle="modal" data-target="#modalExtensions" href="#" data-title="Extensions" data-category="Top Bar" data-event-type="Extensions">Extensions</a></li>
+
+        </ul>
+
+        <ul class="nav pull-right">
+          <li data-mm-role="save" class="pull-left btn-group visible-online">
+            <button class="btn btn-primary" data-mm-role="publish" data-category="Top Bar" data-event-type="Save Map">Save</button>
+            <button class="btn dropdown-toggle" data-toggle='dropdown'><span data-mm-role='currentrepo' class='repo repo-a'>&nbsp;</span><b class="caret"></b></button>
+            <ul class="dropdown-menu">
+              <li><a data-mm-repository='a' rel="nofollow" href="#" data-category="Top Bar" data-event-type="Save to MindMup">MindMup</a></li>
+              <li><a data-mm-repository='b' rel="nofollow" href="#" data-category="Top Bar" data-event-type="Save to MindMup Gold Public">MindMup&nbsp;Gold&nbsp;(Public)</a></li>
+              <li><a data-mm-repository='p' rel="nofollow" href="#" data-category="Top Bar" data-event-type="Save to MindMup Gold Private">MindMup&nbsp;Gold&nbsp;(Private)</a></li>
+              <li><a data-mm-repository='g' rel="nofollow" href="#" data-category="Top Bar" data-event-type="Save to Google Drive">Google&nbsp;Drive</a></li>
+            </ul>
+          </li>
+					<li class="hidden-phone">&nbsp;<button class="btn" data-target="#modalAtlasPublish" data-toggle="modal" data-category="Top Bar" data-event-type="Publish to Atlas">Publish&nbsp;<i class="icon-cloud-upload"></i></button></li>
+
+          <li class="dropdown hidden-phone-portrait">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-category="About" data-event-type="Open"><i class="icon-info-sign"></i></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li> <a href="http://blog.mindmup.com/p/documentation.html" target="_blank" data-category="About" data-event-type="Help"><i class="icon-ambulance"></i>&nbsp;Help and Hints</a> </li>
+              <li> <a href="#" class="menuAbout" data-target="#modalAbout" data-toggle="modal" data-category="About" data-event-type="What is MindMup"><i class="icon-info"></i>&nbsp;What is MindMup</a> </li>
+              <li> <a href="#" class="menuAbout" data-target="#modalGoldLicense" data-toggle="modal" data-category="About" data-event-type="MindMup Gold License"><i class="icon-key"></i>&nbsp;MindMup Gold</a> </li>
+              <li> <a target="_blank" data-category="About" href="http://mindmup.uservoice.com/" data-event-type="Vote on features"><i class="icon-bullhorn"></i>&nbsp;Vote on features</a> </li>
+              <li> <a href="#" class="menuterms" data-target="#modalTerms" data-toggle="modal" data-category="About" data-event-type="Legal info"><i class="icon-legal"></i>&nbsp;Terms of use</a> </li>
+              <li class="visible-online"> <a href="/legal/privacy" class="menuterms" target="_blank" data-category="About" data-event-type="Privacy Policy"><i class="icon-lock"></i>&nbsp;Privacy Policy</a> </li>
+              <li> <a href="http://blog.mindmup.com" target="_blank" data-category="About" data-event-type="News/Blog"><i class="icon-rss"></i>&nbsp;News/Blog</a> </li>
+              <li> <a href="http://github.com/mindmup" target="_blank" data-category="About" data-event-type="Source Code"><i class="icon-github-sign"></i>&nbsp;Source Code</a> </li>
+              <li class="visible-online"> <a href="mailto:contact@mindmup.com" id="menuFeedback" data-category="Feedback" data-event-type="Open" data-label="topbar"><i class="icon-envelope"></i>&nbsp;Talk to Us</a> </li>
+            </ul>
+          </li>
+          <li class="hidden-narrow-screen">
+            <a rel="tooltip" data-title="Get news on Facebook" data-placement="bottom" data-category="Top Bar" data-event-type="Get in touch - facebook" target="_blank" href="http://facebook.com/mindmupapp" class="social"><i class="icon-facebook-sign"></i></a>
+            <a rel="tooltip" data-title="Get news on Twitter" data-placement="bottom" data-category="Top Bar" data-event-type="Get in touch - twitter"  target="_blank" href="https://twitter.com/intent/user?screen_name=mindmup" class="social"><i class="icon-twitter-sign"></i></a>
+            <a rel="tooltip" data-title="Get news on Google+" data-placement="bottom" data-category="Top Bar" data-event-type="Get in touch - google+"  target="_blank" href="https://plus.google.com/u/0/communities/112831595986131146219" class="social"><i class="icon-google-plus-sign"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+
+		<div class="hidden-collaboration-mute-speech">
+	<div id="collaboratorSpeechBubble" class="hide">
+		<div data-mm-role="popover-content-template"><div class="speech-bubble-inner"><span data-mm-role="popover-content"></span></div></div>
+		<div data-mm-role="popover-title-template"><div class="speech-bubble-title"><span data-mm-role="popover-title"></span></div></div>
+		<img data-mm-role="collaborator-photo"/>
+	</div>
+</div>
+
+<!--- from chrome app --->
+<div id="chrome-app-templates" class="hide">
+  <div data-chromeapp-role="file-menu">
+    <li data-chromeapp-role="new-window">
+      <a href="#"><i class="icon-file-alt"></i>&nbsp;New Window</a>
+    </li>
+    <li class="divider"></li>
+    <li data-chromeapp-role="open-file">
+      <a href="#"><i class="icon-folder-open-alt"></i>&nbsp;Open/Import</a>
+    </li>
+    <li class="visible-map-source-f" data-chromeapp-role="reload-map">
+      <a href="#"><i class="icon-repeat"></i>&nbsp;Reload map</a>
+    </li>
+    <li class="divider"></li>
+    <li class="visible-map-changed" data-chromeapp-role="save-loc">
+      <a href="#" data-chromeapp-role="save"><i class="icon-save"></i>&nbsp;Save</a>
+    </li>
+    <li class="hidden-map-changed disabled" data-chromeapp-role="save-loc">
+        <a><i class="icon-save"></i>&nbsp;Save</a>
+    </li>
+    <li class="hidden-autosave" data-chromeapp-role="save-loc">
+        <a href="#" data-chromeapp-role="autosave-activate"><i class="icon-hdd"></i>&nbsp;Turn on autosave</a>
+    </li>
+    <li class="visible-autosave" data-chromeapp-role="save-loc"> 
+        <a href="#" data-chromeapp-role="autosave-deactivate"><i class="icon-hdd icon-muted"></i>&nbsp;Turn off autosave</a>
+    </li>
+    <li class="visible-map-source-f">
+      <a href="#" data-chromeapp-role="save-new-file"><i class="icon-save"></i>&nbsp;Save As...</a>
+    </li>
+    <li class="divider"></li>
+  </div>
+
+  	<div data-mm-section="go-online" data-chromeapp-role="gold-go-online">
+      <p>This operation is still not supported in MindMup Desktop. Please go to <a href="https://www.mindmup.com" target="_blank">mindmup.com</a> to complete the action.</p>
+    </div>
+
+    <div data-chromeapp-role="gold-buttons">
+      <a href="https://www.mindmup.com" target="_blank" class="btn btn-primary" tabstop="4" data-event-type="Go Online" data-mm-section="go-online">Proceed to web site</a>
+      <button data-category="Gold Click" class="btn" data-event-type="Close" tabstop="5" data-dismiss="modal" data-mm-section="go-online">Close</a> 
+    </div>
+    
+
+    <li class="dropdown" data-chromeapp-role="window-menu">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-category="Top Bar" data-event-type="Window">Window</a>
+          <ul class="dropdown-menu" role="menu">
+            <li data-chromeapp-role="template"><a href="#" data-chromeapp-role="activate-link">Window Title</a></li>
+          </ul>
+    </li>
+
+    <li data-chromeapp-role="autosave-status">
+        <a data-chromeapp-role="autosave-in-progress" href="#"><i class="icon-spinner icon-spin"></i>&nbsp;Saving</a>
+        <a data-chromeapp-role="autosave-notify-on" href="#"><i class="icon-hdd"></i>&nbsp;Auto-save ON</a>
+        <a data-chromeapp-role="autosave-notify-off" href="#"><i class="icon-hdd icon-muted"></i>&nbsp;Auto-save OFF</a>
+    </li>
+</div>
+
+  <div id="splittable">
+    <div class="splittable-primary" id="container" data-mm-role="default"></div>
+    <div class="splittable-optional" id="optionalPane" data-mm-role="optional">
+      <div class="measures-sheet content-container" id="measuresSheet" data-mm-role="optional-content" data-mm-activation-role="activatedNodesMeasureSheet" data-mm-activation-key="M">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li>
+                    <form class="navbar-form input-append pull-left">
+                        <input type="text" data-mm-role="measure-to-add" class="span2" placeholder="Measurement name" tabindex="2"/>
+                        <button type="submit" class="btn"><i class="icon-plus-sign"></i><span class="hidden-narrow-screen">&nbsp;Add&nbsp;Measure</span></button>
+                    </form>
+                </li>
+                <li class="divider-vertical hidden-phone hidden-tablet-landscape"></li>
+            </ul>
+            <ul class="nav pull-right">
+
+                <li class="dropdown" class="hidden-touch">
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                   <i class="icon-download-alt"></i><span class="hidden-narrow-screen">&nbsp;Export&nbsp;</span><b class="caret"></b>
+                 </a>
+                 <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" tabindex="4" data-mm-role="remote-export" data-mm-target="#formExport" data-mm-format="measures" data-mm-extension="txt" data-category="Measurements" data-event-type="Export measures for selected nodes">Selected Nodes</a></li>
+                    <li><a href="#" tabindex="4" data-mm-role="remote-export" data-mm-target="#formExport" data-mm-format="measures-all" data-mm-extension="txt" data-category="Measurements" data-event-type="Export measures for entire map">Entire map</a></li>
+                 </ul>
+                </li>
+
+                <li class="dropdown" data-mm-layout="dom" data-mm-role="measures-display-control" >
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                   <i class="icon-tags"></i><span class="hidden-narrow-screen">&nbsp;Label&nbsp;Map&nbsp;</span><b class="caret"></b>
+                 </a>
+                 <ul class="dropdown-menu" role="menu">
+                    <li><a data-category="Measurements" data-event-type="Hide Labels" data-mm-role="hide-measure" ><i class="icon-eye-close"></i>&nbsp;Hide</a></li>
+                    <li class="divider" data-mm-role="hide-measure"></li>
+                    <li data-mm-role="measurement-activation-template"><a data-category="Measurements" data-event-type="Show Labels On Map" data-mm-role="show-measure"><span class="show-active"><i class="icon-check"></i>&nbsp;</span><span data-mm-role="measure-name"></span></a></li>
+                 </ul>
+                </li>
+
+
+                <li class="dropdown" data-mm-layout="kinetic" >
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                   <i class="icon-tags"></i><span class="hidden-narrow-screen">&nbsp;Label&nbsp;Map&nbsp;</span><b class="caret"></b>
+                 </a>
+                 <ul class="dropdown-menu" role="menu">
+                   <li><a data-toggle="modal" data-target="#modalExtensions" href="#" data-title="Extensions" data-category="Measurements" data-event-type="Extensions">Turn off the old layout to use this function</a></li>
+                 </ul>
+                </li>
+
+
+                <li class="hidden-phone">
+                <a href="http://blog.mindmup.com/p/measures.html" target="_blank"><i class="icon-info-sign" data-category="Measurements" data-event-type="Help"></i><span class="hidden-narrow-screen">&nbsp;Help</span></a>
+                </li>
+                <li class="hidden-phone">
+                <a href="#" data-mm-role="activatedNodesMeasureSheet"><i class="icon-remove"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content table-container">
+        <table data-mm-role="measurements-table" class="table table-striped hide">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th data-mm-role="measurement-template">
+                        <div class="btn-group">
+                            <a class="btn btn-link black dropdown-toggle" data-toggle="dropdown" href="#"  data-category="Measurements" data-event-type="Add Measure">
+								<span class="show-active"><i class="icon-tags"></i>&nbsp;</span>
+                                <span data-mm-role="measurement-name"></span>
+                                <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a data-mm-role="remove-measure" data-category="Measurements" data-event-type="Remove Measure">Remove measure</a></li>
+                            </ul>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-mm-role="idea-template">
+                    <th data-mm-role="idea-title" data-mm-truncate="110"></th>
+                    <td  tabindex="1" data-mm-role="value-template"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>TOTAL</th>
+                    <th data-mm-role="summary-template"></th>
+                </tr>
+            </tfoot>
+        </table>
+		<div data-mm-role="no-measures" class="pull-middle hide">
+			<div>
+				<div class="alert alert-info alert-block">
+					<h4>Add some measures</h4>
+					<p>At the moment, your map has no associated measures. Start by adding some measures by using the <strong>Add Measure</strong> field in the upper left corner of this window. You will then be able to assign measurement values to your map nodes. For more information on how to use this feature, see our <a href="http://blog.mindmup.com/p/measures.html" target="_blank">Measures documentation page</a>.</p>
+				</div>
+			</div>
+		</div>
+		
+    </div>
+    <textarea data-mm-role="measures-editor" class="measures-editor"></textarea>
+
+</div>
+
+      <div class="mm-storyboard content-container" id="storyboard" data-mm-role="optional-content" data-mm-activation-role="storyboard-toggler" data-mm-activation-key="S">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav pull-left" data-mm-role="storyboard-menu">
+                <li >
+                    <a href="#" data-mm-role="storyboard-add-scene"><i class="icon-plus-sign" data-category="Storyboard" data-event-type="Add to storyboard"></i><span class="hidden-narrow-screen">&nbsp;Add&nbsp;node</span></a>
+                </li>
+                <li >
+                    <a href="#" data-mm-role="storyboard-add-scene-children"><i class="icon-list-ul" data-category="Storyboard" data-event-type="Add bullets to storyboard"></i><span class="hidden-narrow-screen">&nbsp;Add&nbsp;with&nbsp;children</span></a>
+                </li>
+                <li >
+                    <a href="#" data-mm-role="storyboard-move-scene-left"><i class="icon-arrow-left" data-category="Storyboard" data-event-type="Move storyboard scene left"></i><span class="hidden-narrow-screen">&nbsp;Move&nbsp;left</span></a>
+                </li>
+                <li >
+                    <a href="#" data-mm-role="storyboard-move-scene-right"><i class="icon-arrow-right" data-category="Storyboard" data-event-type="Move storyboard scene right"></i><span class="hidden-narrow-screen">&nbsp;Move&nbsp;right</span></a>
+                </li>
+
+                <li >
+                    <a href="#" data-mm-role="storyboard-remove-scene"><i class="icon-minus-sign" data-category="Storyboard" data-event-type="Remove from storyboard"></i><span class="hidden-narrow-screen">&nbsp;Remove</span></a>
+                </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li class="hidden-touch">
+                <a href="#" tabindex="4" data-target="#modalPresentationExport" data-toggle="modal"  data-category="Storyboard" data-event-type="Export presentation slides">
+                   <i class="icon-download-alt"></i>
+                   <span class="hidden-narrow-screen">&nbsp;Export&nbsp;</span>
+                 </a>
+              </li>
+                <li class="hidden-phone">
+                <a href="#" data-mm-role="storyboard-toggler"><i class="icon-remove"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content storyboard-container">
+		<span class="storyboard-scene" style="display:none" data-mm-role="scene-template"><div class="storyboard-scene-title" data-mm-role="scene-title"></div></span>
+		<div data-mm-role="no-scenes" class="pull-middle hide">
+			<div>
+				<div class="alert alert-info alert-block">
+					<h4>Add some scenes</h4>
+          <p>At the moment, your storyboard has no scenes.</p>
+          <p>Add scenes using the <strong><i class="icon-plus-sign"></i>&nbsp;Add&nbsp;Node</strong> button in the upper left corner of this window, or right click a map node and add select <strong>Storyboard-&gt;Add&nbsp;Node</strong>. 
+          </p>
+          <p>
+					For more information on how to use this feature, see our <a href="http://discover.mindmup.com/storyboards" target="_blank">Storyboards documentation page</a>.</p>
+				</div>
+			</div>
+		</div>
+		
+    </div>
+</div>
+
+    </div>
+  </div>
+
+
+    <div id="linkEditWidget">
+      <div class="btn-group">
+      <button class="btn " rel="tooltip">
+        <input data-mm-target-property='background' class='updateStyle color hide' type="hidden" value="" />&nbsp;
+      </button>
+      <button type="button" class="btn arrow" data-toggle="button">
+        <i class="icon-arrow-right"></i>
+      </button>
+      <button class="btn dropdown-toggle" data-toggle="dropdown">
+        <i class="toggle icon-resize-horizontal"></i>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu lineStyle">
+        <li value="solid"><a>solid</a></li>
+        <li value="dashed"><a>dashed</a></li>
+      </ul>
+      </div>
+      <button type="button" class="btn btn-danger delete"><i class="icon-remove"></i></button>
+    </div>
+  <script src="static/pack_latest/external.js" ></script>
+
+    <script src="compiled/mm-compiled.min.js" ></script>
+
+
+  <iframe style="display:none" id="mailtoIframe" name="mailtoIframe"></iframe>
+<script src="compiled/mindmup-main.js"></script>
+<script src="chrome-app/app.js"></script>
+  </body>
+</html>

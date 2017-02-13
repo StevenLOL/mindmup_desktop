@@ -1,0 +1,14 @@
+.repo-d {
+	background-image: url('../../static/img/dropbox-16.png');
+	padding-left: 16px;
+}
+
+.visible-map-source-d {
+	display: none;
+}
+
+.map-source-d .visible-map-source-d {
+	display: inherit;
+}
+
+

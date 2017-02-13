@@ -1,0 +1,162 @@
+<div> <!-- needs div for easier child locators -->
+  <li class="dropdown progress-top-menu" data-mm-role="top-menu">
+    <a data-category="Top Bar" data-event-type="Open Progress Menu" class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-dashboard"></i><span class="hidden-narrow-screen">&nbsp;Progress&nbsp;<b class="caret"></b></span>
+     </a>
+    <ul class="dropdown-menu" role="menu" data-mm-role="status-list">
+      <li><a data-category="Top Bar" data-event-type="Progress - Start - Tasks" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="tasks"><i class="icon-tasks"></i>&nbsp;Tasks (Background Color)</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Start - Tasks With Flat Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="tasksWithIcons"><i class="icon-tasks"></i>&nbsp;Tasks (Flat Icons)</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Start - Tasks With 3D Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="tasksWith3DIcons"><i class="icon-tasks"></i>&nbsp;Tasks (3D Icons)</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Start - Testing" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="testing"><i class="icon-check"></i>&nbsp;Testing (Background Color)</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Start - Testing With Flat Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="testingWithIcons"><i class="icon-check"></i>&nbsp;Testing (Flat Icons)</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Start - Testing With 3D Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="testingWith3DIcons"><i class="icon-check"></i>&nbsp;Testing (3D Icons)</a></li>
+      <li data-mm-role="status-template">
+        <a data-mm-role="set-status">
+          <div data-mm-role="status-color" class="progress-color">
+          <span data-mm-role="status-icon"><img class="progress-icon" data-mm-role="icon-image-placeholder"/></span>
+          </div>&nbsp;
+          <span data-mm-role="status-name"></span>
+        </a>
+      </li>
+      <li class="divider"  data-mm-progress-visible="active"></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Detach" data-mm-role="toggle-toolbar" data-mm-progress-visible="active"><i class="icon-food" ></i>&nbsp;Floating legend/toolbar</a></li>
+      <li><a data-category="Top Bar" data-event-type="Toggle Progress Stats" data-mm-role="toggle-widget" data-mm-calc-id="progress-calc-widget" data-mm-progress-visible="active"><i class="icon-bar-chart" ></i>&nbsp;Toggle Progress Stats</a></li>
+      <li class="divider"  data-mm-progress-visible="active"></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Clear" data-mm-role="clear" data-mm-progress-visible="active"><i class="icon-eraser" ></i>&nbsp;Reset progress on this map</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Deactivate" data-mm-role="deactivate" data-mm-progress-visible="active"><i class="icon-eject" ></i>&nbsp;Deactivate for this map</a></li>
+      <li><a data-category="Top Bar" data-event-type="Progress - Configure" data-toggle="modal" data-target="#progressEditModal"><i class="icon-cog" ></i>&nbsp;
+        <span data-mm-progress-visible="active">Configure</span><span data-mm-progress-visible="inactive">Custom</span> statuses</a></li>
+    </ul>
+  </li>
+  <div class='well span3 progress-floating progress-toolbar' data-mm-role="floating-toolbar">
+    <div class="progress-toolbar-header">
+    <button class="close pull-right" data-event-type="Expand/Collapse" data-title="Convert to menu" data-mm-role="toggle-toolbar"
+      data-placement="left" rel="tooltip" data-original-title="" title=""><i class="toggle icon-resize-small"></i></button>
+    <h3 class="icon-dashboard">&nbsp;Progress</h3>
+</div>
+<div class="btn-toolbar">
+    <div class="btn-group" data-mm-progress-visible="active">
+      <button data-title="Show/Hide Progress Stats" rel="tooltip" data-category="Progress Toolbar" data-event-type="Toggle Progress Stats" data-mm-role="toggle-widget" data-mm-calc-id="progress-calc-widget" data-mm-progress-visible="active" class="btn"><i class="icon-bar-chart" ></i></button>
+	  <button data-title="Reset progress for this map" rel="tooltip" data-category="Progress Toolbar" data-event-type="Progress - Clear" data-mm-role="clear" data-mm-progress-visible="active" class="btn"><i class="icon-eraser" ></i></button>
+	</div>
+	<div class="btn-group" data-mm-progress-visible="active">
+      <button data-title="Deactivate for this map" rel="tooltip" data-category="Progress Toolbar" data-event-type="Progress - Deactivate" data-mm-role="deactivate" data-mm-progress-visible="active" class="btn"><i class="icon-eject" ></i></button>
+
+      <button data-title="Configure statuses" rel="tooltip" data-category="Progress Toolbar" data-event-type="Progress - Configure" data-toggle="modal" data-target="#progressEditModal" data-mm-progress-visible="active" class="btn"><i class="icon-cog" ></i></button>
+  </div>
+
+    <div class="btn-group" data-mm-progress-visible="inactive">
+          <button class="btn btn-small dropdown-toggle" data-toggle="dropdown" data-category="Progress Toolbar" data-event-type="Open">Activate for this map &nbsp;<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a data-category="Progress Toolbar" data-event-type="Progress - Start - Tasks" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="tasks"><i class="icon-tasks"></i>&nbsp;Tasks (Background Color)</a></li>
+            <li><a data-category="Progress Toolbar" data-event-type="Progress - Start - Tasks With Flat Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="tasksWithIcons"><i class="icon-tasks"></i>&nbsp;Tasks (Flat Icons)</a></li>
+            <li><a data-category="Progress Toolbar" data-event-type="Progress - Start - Tasks With 3D Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="tasksWith3DIcons"><i class="icon-tasks"></i>&nbsp;Tasks (3D Icons)</a></li>
+            <li><a data-category="Progress Toolbar" data-event-type="Progress - Start - Testing" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="testing"><i class="icon-check"></i>&nbsp;Testing (Background Color)</a></li>
+            <li><a data-category="Progress Toolbar" data-event-type="Progress - Start - Testing With Flat Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="testingWithIcons"><i class="icon-check"></i>&nbsp;Testing (Flat Icons)</a></li>
+            <li><a data-category="Progress Toolbar" data-event-type="Progress - Start - Testing With 3D Icons" data-mm-role="start" data-mm-progress-visible="inactive" data-mm-progress-type="testingWith3DIcons"><i class="icon-check"></i>&nbsp;Testing (3D Icons)</a></li>
+      <li><a data-category="Progress Toolbar" data-event-type="Progress - Configure" data-toggle="modal" data-target="#progressEditModal"><i class="icon-cog" ></i>&nbsp;Custom</a></li>
+          </ul>
+    </div>
+</div>
+    <ul class="nav nav-tabs nav-stacked" data-mm-role="status-list">
+      <li data-mm-role="status-template">
+        <a data-mm-role="set-status">
+          <div data-mm-role="status-color" class="progress-color">
+          <span data-mm-role="status-icon"><img class="progress-icon" data-mm-role="icon-image-placeholder"/></span>
+          </div>&nbsp;
+          <span data-mm-role="status-name"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class='modal hide fade' data-mm-role="modal" id="progressEditModal">
+    <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+    <h3>Configure statuses</h3>
+    </div>
+    <div class='modal-body' >
+    <table class="table table-striped table-condensed" >
+      <thead>
+        <tr><th>Description</th><th>Color</th><th>Icon</th><th>Priority</th><th>Delete</th></tr>
+      </thead>
+      <tbody data-mm-role="status-list">
+        <tr data-mm-role="status-template" data-mm-new-role="progress">
+          <td data-mm-role="status-name" data-mm-editable data-mm-default-edit></td>
+          <td><input class="hide" data-mm-role="status-color" data-mm-color-picker></input></td>
+          <td>
+            <a data-mm-role="status-icon" class="btn btn-small"><img class="progress-icon" data-mm-role="icon-image-placeholder"/><i data-mm-role="icon-no-image" class="icon-picture"></i></a>
+          </td>
+          <td data-mm-role="status-priority" data-mm-editable></td>
+          <td>
+            <a data-mm-role="remove" class="btn btn-small"><i class="icon-remove-sign"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class='modal-footer'>
+      <a href="http://blog.mindmup.com/p/monitoring-progress.html" target="_blank" class="pull-left">Learn how to configure</a>
+      <a class='btn' data-mm-role='append'><i class="icon-plus-sign"></i>&nbsp;Add new</a>
+    <a href='#' data-dismiss='modal' class='btn btn-primary' data-mm-role="save">Save</a>
+    <a href='#' data-dismiss='modal' class='btn'>Cancel</a>
+    </div>
+  </div>
+  <!-- style="position:absolute; top:50px; left:10px; border:1px solid black; padding:20px; z-index:999; border-radius:10px;" -->
+    <div id="progress-calc-widget"  class="well span4 progress-floating progress-calc" >
+    <div class="progress-toolbar-header">
+		<button class="close pull-right" data-mm-role="toggle-widget" data-mm-calc-id="progress-calc-widget" data-title="Hide"
+      data-placement="left" rel="tooltip" data-original-title="" title="" data-category="Progress Toolbar" data-event-type="Toggle Progress Stats"><i class="toggle icon-resize-small"></i></button>
+    <h3 class="icon-bar-chart">&nbsp;Progress Stats</h3>
+    </div>
+    <div data-mm-role="filter-widget">
+      <div class="filter-header">
+        <div class="btn-group">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <span data-mm-role="active-projection" ></span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" data-mm-role="projections">
+              <li data-mm-role="projection-template"><a data-mm-role="projection-name"></a></li>
+          </ul>
+        </div>
+		<button data-mm-role="toggle-widget" class="btn" rel="tooltip" data-title="Filter" data-category="Progress Toolbar" data-event-type="Toggle Progress Stats Filter"><i class="icon-filter"></i></button>
+<!--         Removed for rhe moment
+<button data-mm-role="open-measurements" class="btn" rel="tooltip" data-title="Edit in Measurements Sheet" data-category="Progress Toolbar" data-event-type="Edit in Measurements Sheet"><i class="icon-table"></i></button>
+ -->      </div>
+      <div data-mm-role="filter" class="filter-box">
+        <table class="table-condensed">
+          <thead>
+            <tr>
+              <th colspan="2">Include:</th>
+            </tr>
+          </thead>
+          <tr>
+            <td><input type="checkbox" value="includeParents" data-mm-role="toggle-property" /></td><td>Matching status parents</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" value="selectedSubtree" data-mm-role="toggle-property" /></td><td>Only selected subtree</td>
+          </tr>
+          <thead>
+            <tr>
+              <th colspan="2">Show only: <a href="#" data-mm-role="select-all-statuses" class="btn btn-small btn-info pull-right"><i class="icon-check-sign"></i>&nbsp;Select All Statuses</a></th>
+            </tr>
+          </thead>
+          <tbody data-mm-role="status-list">
+            <tr data-mm-role="template"><td><input type="checkbox" data-mm-role="status-checkbox"/></td><td data-mm-role="status-description"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+   <div class="table-scrollview">
+    <table data-mm-role="calc-table" class="table table-striped calc-table">
+      <tr data-mm-role="row-template">
+        <td data-mm-role="cell"><span data-mm-role="value" /></td>
+      </tr>
+    </table>
+    </div>
+    <div data-mm-role="total" class="calc-total">
+      <span class="calc-total-description">Total</span><span class="calc-total-value" data-mm-role="total-value" ></span>
+    </div>
+   <div data-mm-role="empty">There is no data for the current map or the active filter. Use the progress menu or toolbar to set node statuses to see the data here, or change the active filter by clicking on the <i class="icon-filter"></i> filter button.</div>
+  </div>
+</div>

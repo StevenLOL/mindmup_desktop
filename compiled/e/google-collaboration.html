@@ -1,0 +1,38 @@
+<div> <!-- needs div for easier child locators -->
+	<li class="dropdown" data-mm-role="top-menu">
+		<a data-category="Top Bar" data-event-type="Open Collaboration Menu" class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-group"></i><span class="hidden-narrow-screen">&nbsp;Collaboration&nbsp;<b class="caret"></b></span>
+	   </a>
+		<ul class="dropdown-menu" role="menu">
+			<li><a data-category="Top Bar" data-event-type="Collaboration - Start" data-mm-role="start" data-mm-collab-visible="offline"><i class="icon-play" ></i>&nbsp;Start</a></li>
+			<li class="hidden-touch visible-map-source-c" rel="tooltip"><a data-mm-target="body" data-mm-role="c-toggle-class" data-mm-class="collaboration-toolbar"><i class="icon-group"></i>&nbsp;<span class="hidden-collaboration-toolbar">Show</span><span class="visible-collaboration-toolbar">Hide</span>&nbsp;collaborators</a></li>
+			<li class="hidden-touch visible-map-source-c" rel="tooltip"><a data-mm-target="body" data-mm-role="c-toggle-class" data-mm-class="collaboration-mute-speech">
+        <span class="visible-collaboration-mute-speech"><i class="icon-volume-up"></i>&nbsp;Unmute</span><span class="hidden-collaboration-mute-speech"><i class="icon-volume-off"></i>&nbsp;Mute</span> Collaborator Changes
+			</a></li>
+			<li><a data-category="Top Bar" data-event-type="Collaboration - Invite" data-mm-role="invite" data-mm-collab-visible="online"><i class="icon-bullhorn" ></i>&nbsp;Invite collaborators</a></li>
+			<li><a data-category="Top Bar" data-event-type="Collaboration - Join Existing" data-mm-role="c-google-drive-open" data-mm-content-types="application/vnd.mindmup.collab" data-mm-collab-visible="offline" data-mm-title="Join an existing session"><i class="icon-eye-open" ></i>&nbsp;Join an existing session</a></li>
+      <li><a data-category="Top Bar" data-event-type="Collaboration - Leave" data-mm-role="leave" data-mm-collab-visible="online"><i class="icon-eject" ></i>&nbsp;Leave current session</a></li>
+		</ul>
+	</li>
+	<div class='modal hide fade' data-mm-role='modal-start'>
+	  <div class='modal-header'>
+		<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+		<h3>Start a collaborative session</h3>
+	  </div>
+	  <div class='modal-body' >
+		  <p>Give your session a short descriptive name (eg Monday Impact Planning). The name will help
+		  your collaborators understand what they are joining, and also help you
+		  recognise this session later if you want to join again or retrieve results.
+		  You will be able to invite collaborators in the next step.</p>
+		  <form>
+			  <div class="control-group">
+				<input type="text" name="session-name" placeholder="Collaborative map name" />
+			</div>
+		</form>
+	  </div>
+	  <div class='modal-footer'>
+		<a href='#' data-dismiss='modal' class='btn'>Close</a>
+		<a href='#' class='btn btn-primary' data-mm-role='start-session'><i class='icon-play'></i> Start</a>
+	  </div>
+	</div>
+</div>

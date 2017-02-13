@@ -1,0 +1,13 @@
+.repo-c {
+	background-image: url('../../static/img/repo-c.png');
+	background-repeat: no-repeat;
+	background-position:left center;
+}
+.visible-map-source-c {
+	display: none;
+}
+
+.map-source-c .visible-map-source-c {
+	display: initial;
+}
+

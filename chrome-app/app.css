@@ -1,0 +1,24 @@
+body.chrome_app .visible-online {
+  display: none;
+}
+.visible-autosave {
+  display: none;
+}
+body.chrome-file-autosave.map-source-f .visible-autosave  {
+  display: block;
+}
+body.chrome-file-autosave .hidden-autosave  {
+  display: none;
+}
+body.map-source-n .hidden-autosave  {
+  display: none;
+}
+.visible-map-source-f {
+  display: none;
+}
+body.map-source-f .visible-map-source-f {
+  display: block;
+}
+.visible-during-autosave {
+    display: none;
+}
