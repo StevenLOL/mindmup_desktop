@@ -1,4 +1,4 @@
-Here is an outdated app, the mindmup desktop version 0.0.0.14_0 (offline) for chrome/chromium browser. 
+Here is an outdated app, the [mindmup](https://github.com/mindmup/legacy-mindmup) desktop version 0.0.0.14_0 (offline) for chrome/chromium browser. 
 
 To install, from your chrome, load this folder by  setting|extensions|load unpacked extension.
 
