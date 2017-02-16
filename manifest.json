@@ -1,32 +1,29 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
-  "name": "MindMup Desktop - Free Mind Mapping",
-  "short_name": "MindMup Desktop",
-  "description": "Free mind mapping on your desktop, based on MindMup.com. Works offline, saves and loads from local drive.",
-  "version": "0.0.0.14",
-  "manifest_version": 2,
-  "minimum_chrome_version": "31",
-  "app": {
-    "background": {
-      "scripts": ["background.js"]
-    }
-  },
-  "permissions": [
-    {"fileSystem": ["write", "retainEntries", "directory"]},
-    "storage"
-  ],
-  "file_handlers": {
-    "text": {
-      "extensions": [
-          "mup", "mm"
-      ]
-    }
-  },
-  "icons": {
-    "16": "assets/icon-16.png",
-    "48": "assets/icon-48.png",
-    "128": "assets/icon-128.png"
-  },
-  "offline_enabled": true
+   "app": {
+      "background": {
+         "scripts": [ "background.js" ]
+      }
+   },
+   "description": "Free mind mapping on your desktop, based on MindMup.com. Works offline, saves and loads from local drive.",
+   "file_handlers": {
+      "text": {
+         "extensions": [ "mup", "mm" ]
+      }
+   },
+   "icons": {
+      "128": "assets/icon-128.png",
+      "16": "assets/icon-16.png",
+      "48": "assets/icon-48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz8DiXcpsSW6gMKihAR7pBNxMCi7rcYHD02KN3ku4iSQlCOaR94YG52o43Y1US5Z1HOb6b+sHJTd70qqXhrSmqLQGZ8nVzpKWwJu4Ca+ztlR6GTymWHaOSesoAVirZTgfanhcAgnzHFu8Z8FmK7DxzYx/0kO6hQZUbr9ic60GuoPoRF5bDzavFqhCtuJySOYxtk0ifvnA8mqe0n6SQNgDQyhOemm9x4AGDIosNPW9mS9Bjby8bQ54eVkXml1CsDIr7hwLjhF2hD9i8QAdWClHhHnUXTs4ZI3TKjRsMOxBr+TnuObiTH344hJpd1gk8Jmjp/+JQJAeDqyKJKsLRkXzzwIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "31",
+   "name": "MindMup Desktop - Free Mind Mapping",
+   "offline_enabled": true,
+   "permissions": [ {
+      "fileSystem": [ "write", "retainEntries", "directory" ]
+   }, "storage" ],
+   "short_name": "MindMup Desktop",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.0.0.14"
 }
